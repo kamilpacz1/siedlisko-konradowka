@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kukowo - Nowoczesne Siedlisko</title>
+  <!-- Główny plik CSS -->
+  <link rel="stylesheet" href="styles/main.css" />
+  <!-- AOS CSS (opcjonalnie do animacji) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+</head>
+<body>
+  <!-- Side Navigation (Menu drop-down) -->
+  <div id="sideNav" class="side-nav">
+    <div class="side-nav-header">Menu Witryny</div>
+    <!-- Kliknięcie w X zamyka menu -->
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
+    <a href="index.html">Strona Główna</a>
+    <a href="offer.html">Odkryj Siedlisko</a>
+    <a href="gallery.html">Galeria</a>
+    <a href="okoliczne-atrakcje.html">Okoliczne Atrakcje</a>
+    <a href="reservation.html">Rezerwacje</a>
+    <a href="contact.html">Kontakt</a>
+  </div>
+
+  <!-- Header Initial (przezroczysty, widoczny od załadowania strony) -->
+  <header id="headerInitial">
+    <div class="header-container">
+      <img src="img/logo2.png" alt="Siedlisko Konradówka" class="logo" id="initialLogo" />
+      <nav class="desktop-nav">
+        <ul>
+          <li><a href="#hero">Start</a></li>
+          <li><a href="offer.html">Odkryj Siedlisko</a></li>
+          <li><a href="gallery.html">Galeria</a></li>
+          <li><a href="okoliczne-atrakcje.html">Okoliczne Atrakcje</a></li>
+          <li><a href="reservation.html">Rezerwacje</a></li>
+          <li><a href="contact.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Header Sticky (pojawi się po przewinięciu) -->
+  <header id="headerSticky">
+    <div class="header-container">
+      <img src="img/logo-top.jpg" alt="Powrót na górę" class="logo" id="stickyLogo" onclick="scrollToTop()" />
+      <nav class="desktop-nav">
+        <ul>
+          <li><a href="#hero">Start</a></li>
+          <li><a href="offer.html">Odkryj Siedlisko</a></li>
+          <li><a href="gallery.html">Galeria</a></li>
+          <li><a href="okoliczne-atrakcje.html">Okoliczne Atrakcje</a></li>
+          <li><a href="reservation.html">Rezerwacje</a></li>
+          <li><a href="contact.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero" data-aos="fade-up">
+    <video autoplay muted loop class="hero-video">
+      <source src="videos/hero-video.mp4" type="video/mp4" />
+      <img src="img/hero-fallback.jpg" alt="Tło fallback" />
+    </video>
+    <div class="hero-content">
+      <h2>Witamy w Kukowo</h2>
+      <p>Nowoczesne siedlisko z tradycją</p>
+      <a href="reservation.html" class="btn">Zarezerwuj teraz</a>
+      <!-- Przycisk przewijania -->
+      <button id="scrollButton" class="scroll-button">PRZEWIŃ &#x2193;</button>
+    </div>
+  </section>
+
+  <!-- Sekcja Wizytówkowa / About Siedlisko -->
+  <section id="about-siedlisko" class="about-siedlisko" data-aos="fade-up">
+    <div class="container">
+      <h2>Odkryj Siedlisko Kukowo</h2>
+      <p>
+        Poznaj nasze wyjątkowe miejsce, gdzie każdy detal został stworzony, abyś czuł się jak w domu.
+      </p>
+
+      <!-- 1. Rodzinne powitanie -->
+      <div class="info-row">
+        <div class="info-image stamp-border">
+          <img src="img/siedlisko1.jpg" alt="Rodzinne powitanie">
+        </div>
+        <div class="info-text">
+          <h3>Rodzinne powitanie</h3>
+          <p>
+            Zapraszamy Cię do naszego domu, który tonie w zieleni winorośli. Serdeczność gospodarzy sprawia, że od pierwszych chwil poczujesz się jak część rodziny.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2. Sielska przygoda -->
+      <div class="info-row reverse">
+        <div class="info-image stamp-border">
+          <img src="img/siedlisko2.jpg" alt="Sielska przygoda">
+        </div>
+        <div class="info-text">
+          <h3>Sielska przygoda</h3>
+          <p>
+            Przeżyj niezapomnianą przygodę w otoczeniu kolorowych przyczep kempingowych i zabytkowego traktora. To idealne miejsce, aby doświadczyć swobody i bliskości natury, spędzając czas w gronie najbliższych.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3. Nocny spacer przez historię -->
+      <div class="info-row">
+        <div class="info-image stamp-border">
+          <img src="img/siedlisko3.jpg" alt="Nocny spacer przez historię">
+        </div>
+        <div class="info-text">
+          <h3>Nocny spacer przez historię</h3>
+          <p>
+            Kiedy zapada zmrok, Kukowo nabiera magii. Urokliwe uliczki oświetlone latarniami, przy których parkują klasyczne samochody, tworzą niepowtarzalną scenerię do romantycznych spacerów pod gwiazdami.
+          </p>
+        </div>
+      </div>
+
+      <!-- 4. Morze maków -->
+      <div class="info-row reverse">
+        <div class="info-image stamp-border">
+          <img src="img/siedlisko4.jpg" alt="Morze maków">
+        </div>
+        <div class="info-text">
+          <h3>Malownicze tereny</h3>
+          <p>
+            Latem okolica Kukowo przemienia się w czerwony dywan maków. Malownicze pola pełne kwiatów zachęcają do relaksujących spacerów, sesji zdjęciowych oraz chwil wyciszenia w niezwykłej scenerii.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5. Piękne widoki -->
+      <div class="info-row">
+        <div class="info-image stamp-border">
+          <img src="img/siedlisko5.jpg" alt="Piękne widoki">
+        </div>
+        <div class="info-text">
+          <h3>Piękne widoki</h3>
+          <p>
+            Choć zdjęcie przedstawia paralotnię, w Siedlisku Kukowo oferujemy przede wszystkim przepiękne widoki, które zachwycą każdego miłośnika natury.
+          </p>
+        </div>
+      </div>
+
+      <!-- 6. Wyjątkowe wnętrze -->
+      <div class="info-row reverse">
+        <div class="info-image stamp-border">
+          <!-- Nowe zdjęcie: siedlisko6.jpg -->
+          <img src="img/siedlisko6.jpg" alt="Wyjątkowe wnętrze">
+        </div>
+        <div class="info-text">
+          <h3>Wyjątkowe wnętrza</h3>
+          <p>
+            Kolorowe witraże, drewniana konstrukcja i nastrojowe oświetlenie tworzą magiczną atmosferę.
+            To idealne miejsce, by odpocząć i dać się oczarować niezwykłym detalom.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery" data-aos="fade-up">
+    <div class="container">
+      <h2>Galeria</h2>
+      <div class="gallery-grid">
+        <img src="img/gallery1.jpg" alt="Galeria 1" data-aos="flip-left" data-aos-delay="0" loading="lazy">
+        <img src="img/gallery2.jpg" alt="Galeria 2" data-aos="flip-left" data-aos-delay="100" loading="lazy">
+        <img src="img/gallery3.jpg" alt="Galeria 3" data-aos="flip-left" data-aos-delay="200" loading="lazy">
+        <img src="img/gallery4.jpg" alt="Galeria 4" data-aos="flip-left" data-aos-delay="300" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Sekcja ofertowa (kafelki) -->
+  <section id="offer-collage" class="offer-collage" data-aos="fade-up">
+    <a href="konradowe-chaty.html" class="collage-item">
+      <img src="img/konradowe-chaty.jpg" alt="Konradowe Chaty">
+      <div class="collage-overlay">
+        <h3>Konradowe Chaty</h3>
+      </div>
+    </a>
+    <a href="studia.html" class="collage-item">
+      <img src="img/studia-w-starej-stajni.jpg" alt="Studia w Starej Stajni">
+      <div class="collage-overlay">
+        <h3>Studia w Starej Stajni</h3>
+      </div>
+    </a>
+    <a href="sauna.html" class="collage-item">
+      <img src="img/sauna.jpg" alt="Sauna">
+      <div class="collage-overlay">
+        <h3>Sauna</h3>
+      </div>
+    </a>
+    <a href="camping.html" class="collage-item">
+      <img src="img/camping.jpg" alt="Camping">
+      <div class="collage-overlay">
+        <h3>Camping</h3>
+      </div>
+    </a>
+  </section>
+
+  <!-- Formularz Rezerwacyjny -->
+  <section id="reservation" class="reservation" data-aos="fade-up">
+    <div class="container">
+      <h2>Formularz Rezerwacyjny</h2>
+      <form id="reservationForm">
+        <label for="name">Imię i nazwisko:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="date">Data rezerwacji:</label>
+        <input type="date" id="date" name="date" required>
+        <label for="guests">Liczba gości:</label>
+        <input type="number" id="guests" name="guests" min="1" required>
+        <label for="message">Uwagi:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+        <p class="payment-note"><strong>Uwaga:</strong> Płatność odbywa się gotówką w obiekcie.</p>
+        <button type="submit">Wyślij Rezerwację</button>
+      </form>
+      <div id="formResponse" class="form-response"></div>
+    </div>
+  </section>
+
+  <!-- Sekcja Instagram (przykładowa) -->
+  <section id="instagram-reel" data-aos="fade-up">
+    <div class="container instagram-card">
+      <div class="ig-flex-container">
+        <div class="reels-column">
+          <div class="reels-carousel">
+            <div class="reel-item" data-url="https://www.instagram.com/p/C_bATAhIqhl/?utm_source=ig_embed&amp;utm_campaign=loading">
+              <img src="img/instagram/reel1-thumbnail.jpg" alt="Poster reelsa 1" class="poster" style="display:block;">
+              <video class="reel-video" muted loop playsinline poster="img/instagram/reel1-thumbnail.jpg">
+                <source src="videos/reel1.mp4" type="video/mp4">
+                Twoja przeglądarka nie obsługuje wideo.
+              </video>
+              <div class="instagram-nick">@siedlisko_konradowka</div>
+              <div class="overlay">
+                <div class="play-icon">&#9658;</div>
+              </div>
+            </div>
+            <div class="reel-item" data-url="https://www.instagram.com/reel/DEmwZ-nsNAy/?utm_source=ig_embed&amp;utm_campaign=loading">
+              <img src="img/instagram/reel2-thumbnail.jpg" alt="Poster reelsa 2" class="poster" style="display:block;">
+              <video class="reel-video" muted loop playsinline poster="img/instagram/reel2-thumbnail.jpg">
+                <source src="videos/reel2.mp4" type="video/mp4">
+                Twoja przeglądarka nie obsługuje wideo.
+              </video>
+              <div class="instagram-nick">@siedlisko_konradowka</div>
+              <div class="overlay">
+                <div class="play-icon">&#9658;</div>
+              </div>
+            </div>
+            <div class="reel-item" data-url="https://www.instagram.com/reel/CuNPUSQA4gq/?utm_source=ig_embed&amp;utm_campaign=loading">
+              <img src="img/instagram/reel3-thumbnail.jpg" alt="Poster reelsa 3" class="poster" style="display:block;">
+              <video class="reel-video" muted loop playsinline poster="img/instagram/reel3-thumbnail.jpg">
+                <source src="videos/reel3.mp4" type="video/mp4">
+                Twoja przeglądarka nie obsługuje wideo.
+              </video>
+              <div class="instagram-nick">@siedlisko_konradowka</div>
+              <div class="overlay">
+                <div class="play-icon">&#9658;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="profile-column">
+          <div class="profile-content">
+            <div class="profile-header">
+              <a href="https://www.instagram.com/siedlisko_konradowka/" target="_blank">
+                <img src="img/instagram/siedlisko-ig-logo.jpg" alt="IG Logo" class="profile-ig-logo">
+              </a>
+              <div class="profile-name">@siedlisko_konradowka</div>
+            </div>
+            <img src="img/instagram/siedlisko_konradowka_qr.png" alt="Kod QR" class="profile-qr">
+            <div class="profile-desc" style="text-align: left;">
+              Wiejskie klimaty, u nas czas płynie wolniej.<br>
+              Mazurskie domki, studia w starej stajni,<br>
+              miejsce dla kamperów i namiotów🌲
+            </div>
+            <a href="https://www.instagram.com/siedlisko_konradowka/" target="_blank" class="profile-link">
+              Odwiedź profil na Instagramie
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stopka -->
+  <footer id="footer" data-aos="fade-up">
+    <div class="container">
+      <p>&copy; 2025 Kukowo. Wszelkie prawa zastrzeżone.</p>
+      <p>Kontakt: info@kukowo.pl | Telefon: +48 123 456 789</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox (opcjonalny element) -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="Powiększony obraz">
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
+  </div>
+
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+
+  <!-- Główny skrypt -->
+  <script>
+    // Funkcja przełączająca menu boczne (otwieranie/zamykanie)
+    function toggleNav() {
+      var sideNav = document.getElementById("sideNav");
+      if (sideNav.style.width === "0px" || sideNav.style.width === "") {
+        sideNav.style.width = "250px";
+      } else {
+        sideNav.style.width = "0";
+      }
+    }
+    
+    // Funkcja przewijająca stronę do góry
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Dodanie zdarzenia dla logo w pierwszym headerze
+    document.getElementById("initialLogo")?.addEventListener("click", toggleNav);
+    
+    // Obsługa scrollu – przełączanie widoczności headerów
+    window.addEventListener("scroll", function() {
+      var headerInitial = document.getElementById("headerInitial");
+      var headerSticky = document.getElementById("headerSticky");
+      var scrollThreshold = 100; // próg scrollu (px)
+      if (window.scrollY > scrollThreshold) {
+        headerInitial.style.opacity = 0;
+        headerInitial.style.display = "none";
+        headerSticky.style.display = "flex";
+        setTimeout(function() {
+          headerSticky.style.opacity = 1;
+        }, 10);
+      } else {
+        headerInitial.style.display = "flex";
+        headerInitial.style.opacity = 1;
+        headerSticky.style.opacity = 0;
+        headerSticky.style.display = "none";
+      }
+    });
+    
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    // Obsługa przycisku przewijania
+    document.getElementById("scrollButton")?.addEventListener("click", function() {
+      document.getElementById("gallery").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Dodanie obsługi kliknięć dla elementów reels
+    document.querySelectorAll('.reel-item').forEach(function(item) {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        let video = this.querySelector('.reel-video');
+        let poster = this.querySelector('.poster');
+        if (!video.style.display || video.style.display === 'none') {
+          video.style.display = 'block';
+          poster.style.display = 'none';
+          video.play();
+        } else {
+          window.open(this.getAttribute('data-url'), '_blank');
+        }
+      });
+    });
+  </script>
+
+  <!-- Instafeed.js (opcjonalnie) -->
+  <script src="https://cdn.jsdelivr.net/npm/instafeed.js@2.0.0/dist/instafeed.min.js"></script>
+  <script>
+    var feed = new Instafeed({
+      get: 'user',
+      userId: 'YOUR_USER_ID',         
+      accessToken: 'YOUR_ACCESS_TOKEN',
+      limit: 6,
+      template:
+        '<a href="{{link}}" target="_blank"><img src="{{image}}" alt="{{caption}}" style="width:48px; height:48px; margin:2px; border-radius:4px;" /></a>',
+      after: function() {
+        var items = document.querySelectorAll('#instafeed a');
+        var currentIndex = 0;
+        setInterval(function() {
+          items.forEach(function(item) {
+            item.style.opacity = '0';
+          });
+          items[currentIndex].style.opacity = '1';
+          currentIndex = (currentIndex + 1) % items.length;
+        }, 4000);
+      }
+    });
+    feed.run();
+  </script>
+</body>
+</html>

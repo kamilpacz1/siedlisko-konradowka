@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atrakcje - Kukowo</title>
+  <!-- Jeśli styles/main.css zawiera dodatkowe reguły, upewnij się, że nie nadpisują one poniższych stylów -->
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <style>
+    /* Podstawowe style atrakcji */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      text-align: center;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    
+    /* Style headera i nawigacji */
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .menu-btn {
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .desktop-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .desktop-nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .desktop-nav ul li a:hover {
+      color: #007BFF;
+    }
+    
+    /* Style bocznego menu */
+    .side-nav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+    .side-nav .side-nav-header {
+      color: #fff;
+      font-size: 22px;
+      padding: 10px 30px;
+      border-bottom: 1px solid #444;
+      margin-bottom: 20px;
+    }
+    .side-nav a {
+      padding: 10px 30px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #ccc;
+      display: block;
+      transition: 0.3s;
+    }
+    .side-nav a:hover {
+      color: #fff;
+    }
+    .side-nav .closebtn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 36px;
+      color: #fff;
+    }
+    
+    /* Karuzela - Atrakcje w Siedlisku */
+    #siedlisko-attractions {
+      padding: 60px 0;
+      background-color: #f8f8f8;
+    }
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.3s ease;
+    }
+    .carousel-slide {
+      position: relative;
+      flex: 0 0 auto;
+    }
+    .carousel-slide img {
+      display: block;
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      /* Płynne przejście przy powiększaniu / podświetlaniu */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    /* Efekt po najechaniu kursorem */
+    .carousel-slide:hover img {
+      transform: scale(1.03); /* lekko powiększ */
+      box-shadow: 0 0 10px rgba(0,0,0,0.3); /* subtelne podświetlenie */
+    }
+    .carousel-slide p {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 10;
+      transition: background 0.2s ease;
+    }
+    .carousel-btn-prev {
+      left: 0;
+    }
+    .carousel-btn-next {
+      right: 0;
+    }
+    .carousel-btn:hover {
+      background: rgba(0,0,0,0.6);
+    }
+    
+    /* Grid atrakcji dla pozostałych sekcji */
+    .attractions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .attraction-item {
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .attraction-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .attraction-item h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    .attraction-item p {
+      font-size: 16px;
+      color: #555;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #007BFF;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Side Navigation (boczne menu, domyślnie ukryte) -->
+  <div id="sideNav" class="side-nav">
+    <div class="side-nav-header">Menu Witryny</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Strona Główna</a>
+    <a href="offer.html">Odkryj Siedlisko</a>
+    <a href="gallery.html">Galeria</a>
+    <a href="okoliczne-atrakcje.html">Okoliczne Atrakcje</a>
+    <a href="reservation.html">Rezerwacje</a>
+    <a href="contact.html">Kontakt</a>
+  </div>
+
+  <!-- Header z nawigacją -->
+  <header data-aos="fade-down">
+    <div class="container header-container">
+      <div class="logo"><h1>Kukowo</h1></div>
+      <div class="menu-btn" onclick="openNav()">Menu</div>
+      <nav class="desktop-nav">
+        <ul>
+          <li><a href="#hero">Start</a></li>
+          <li><a href="offer.html">Odkryj Siedlisko</a></li>
+          <li><a href="gallery.html">Galeria</a></li>
+          <li><a href="okoliczne-atrakcje.html">Okoliczne Atrakcje</a></li>
+          <li><a href="reservation.html">Rezerwacje</a></li>
+          <li><a href="contact.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sekcja Atrakcje w Siedlisku (Karuzela) -->
+  <section id="siedlisko-attractions" data-aos="fade-up">
+    <div class="container">
+      <h2>Atrakcje w Siedlisku</h2>
+      <div class="carousel-container">
+        <button class="carousel-btn carousel-btn-prev" id="prevBtn">&#10094;</button>
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img src="img/siedlisko/1.jpg" alt="Swojskie Jajka">
+            <p>Swojskie Jajka</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/siedlisko/2.jpg" alt="Pływanie po stawie">
+            <p>Pływanie po stawie</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/siedlisko/3.jpg" alt="Pływanie po jeziorze">
+            <p>Pływanie po jeziorze</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/siedlisko/4.jpg" alt="Pomost nad stawem">
+            <p>Pomost nad stawem</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/siedlisko/5.jpg" alt="Pobliskie jeziora">
+            <p>Pobliskie jeziora</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/siedlisko/6.jpg" alt="Wieczory przy kominku">
+            <p>Wieczory przy kominku</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/siedlisko/7.jpg" alt="Malownicze krajobrazy">
+            <p>Malownicze krajobrazy</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/siedlisko/8.jpg" alt="Dary natury">
+            <p>Dary natury</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/siedlisko/9.jpg" alt="Zwierzęta">
+            <p>Zwierzęta</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="img/siedlisko/10.jpg" alt="Długie spacery">
+            <p>Długie spacery</p>
+          </div>
+        </div>
+        <button class="carousel-btn carousel-btn-next" id="nextBtn">&#10095;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKCJA Z MAPĄ – pomiędzy 'Atrakcje w Siedlisku' a 'Przyroda i Krajobraz' -->
+  <section id="mapa" data-aos="fade-up">
+    <div class="container">
+      <h2>Mapa Atrakcji</h2>
+      <p>Sprawdź najciekawsze miejsca zaznaczone na mapie:</p>
+      <!-- Szerzej: 100%, wysokość 600px -->
+      <iframe 
+        src="https://www.google.com/maps/d/u/0/embed?mid=1yA4rXebmaCPuSi7bP3HGbIYDySVpZM0&amp;ehbc=2E312F&amp;noprof=1"
+        style="border: 1px solid #ccc; width: 100%; height: 600px; margin: 0 auto;"
+      ></iframe>
+    </div>
+  </section>
+
+  <!-- Sekcja 1: Przyroda i Krajobraz -->
+  <section id="przyroda" data-aos="fade-up">
+    <div class="container">
+      <h2>Przyroda i Krajobraz</h2>
+      <div class="attractions-grid">
+        <div class="attraction-item">
+          <img src="img/atrakcje/wigierski.jpg" alt="Wigierski Park Narodowy">
+          <h3>Wigierski Park Narodowy</h3>
+          <p>Park narodowy o unikalnej przyrodzie i malowniczych krajobrazach. Idealny na piesze wędrówki i obserwację dzikiej fauny.</p>
+          <a href="https://www.wigry.org.pl/" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/spk.jpg" alt="Suwalski Park Krajobrazowy">
+          <h3>Suwalski Park Krajobrazowy</h3>
+          <p>Rozległe tereny zielone z trasami spacerowymi i rowerowymi – raj dla miłośników natury.</p>
+          <a href="https://spk.org.pl/" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/hancza.jpg" alt="Jezioro Hańcza">
+          <h3>Jezioro Hańcza</h3>
+          <p>Najgłębsze jezioro w Polsce – idealne miejsce do żeglowania, wędkowania oraz relaksu nad wodą.</p>
+          <a href="https://spk.org.pl/warto-zobaczyc/jezioro-hancza-4/" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/glazowisko.jpg" alt="Głazowiska: Bachanowo i Rutka">
+          <h3>Głazowiska: Bachanowo i Rutka</h3>
+          <p>Relikty lodowcowe z punktami widokowymi – malownicze krajobrazy, idealne do spacerów i fotografii.</p>
+          <a href="https://plannawypad.pl/glazowisko-bachanowo-suwalszczyzna/" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sekcja 2: Kultura, Historia i Dziedzictwo -->
+  <section id="kultura" data-aos="fade-up">
+    <div class="container">
+      <h2>Kultura, Historia i Dziedzictwo</h2>
+      <div class="attractions-grid">
+        <div class="attraction-item">
+          <img src="img/atrakcje/muzeum.jpg" alt="Muzeum Wigier w Starym Folwarku">
+          <h3>Muzeum Wigier w Starym Folwarku</h3>
+          <p>Poznaj historię regionu oraz dziedzictwo kulturowe prezentowane w unikatowych zbiorach muzealnych.</p>
+          <a href="https://wigpn.gov.pl/strona-glowna-muzeum" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/palac.jpg" alt="Pałac Paca w Dowspudzie">
+          <h3>Pałac Paca w Dowspudzie</h3>
+          <p>Historyczny pałac o fascynującej architekturze – idealny na spacer i sesję zdjęciową.</p>
+          <a href="https://suwalszczyzna.com.pl/info/miejsca/dowspuda---palac-paca" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/klasztor.jpg" alt="Klasztor Kamedułów w Wigrach">
+          <h3>Klasztor Kamedułów w Wigrach</h3>
+          <p>Duchowe miejsce o bogatej historii – odkryj życie zakonne i atmosferę tego niezwykłego obiektu.</p>
+          <a href="https://nawigry.pl/" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/jacwingowie.jpg" alt="Góra Zamkowa &amp; Cmentarzysko Jaćwingów">
+          <h3>Góra Zamkowa &amp; Cmentarzysko Jaćwingów</h3>
+          <p>Miejsce łączące tradycję z zapierającymi dech w piersiach widokami.</p>
+          <a href="https://suwalszczyzna.com.pl/info/miejsca/szwajcaria---cmentarzysko-jacwingow" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/stanczyki.jpg" alt="Stańczyki">
+          <h3>Stańczyki</h3>
+          <p>Imponujące wiadukty – jedne z najwyższych w Polsce, idealne do fotografii i spacerów.</p>
+          <a href="https://mazury.info.pl/stanczyki/" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/molenna.jpg" alt="Molenna Staroobrzędowców">
+          <h3>Molenna Staroobrzędowców</h3>
+          <p>Tradycyjna molenna związana z historią staroobrzędowców – ciekawy punkt kulturowy.</p>
+          <a href="https://infoaugustow.pl/molenna-staroobrzedowcow/" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/punsk.jpg" alt="Puńsk">
+          <h3>Puńsk</h3>
+          <p>Miejscowość mniejszości litewskiej, znana z regionalnej kuchni i wyjątkowej kultury.</p>
+          <a href="https://www.ugpunsk.pl/asp/atrakcje-turystyczne-w-gminie-punsk,117,,1" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/wieliczki.jpg" alt="Kościół drewniany w Wieliczkach">
+          <h3>Kościół drewniany w Wieliczkach</h3>
+          <p>Unikatowy drewniany kościół – przykład tradycyjnej architektury sakralnej.</p>
+          <a href="https://diecezjaelk.pl/parafie_diecezji/wieliczki-parafia-pw-narodzenia-najswietszej-maryi-panny/" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sekcja 3: Sport i Rekreacja -->
+  <section id="sport" data-aos="fade-up">
+    <div class="container">
+      <h2>Sport i Rekreacja</h2>
+      <div class="attractions-grid">
+        <div class="attraction-item">
+          <img src="img/atrakcje/rudziewicz.jpg" alt="Piękna Góra Rudziewicz">
+          <h3>Piękna Góra Rudziewicz</h3>
+          <p>Malownicze miejsce, gdzie natura spotyka historię – idealne do aktywnego wypoczynku.</p>
+          <a href="https://www.facebook.com/pieknagora/?locale=pl_PL" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/szelment.jpg" alt="Ośrodek Narciarski WOSiR Szelment">
+          <h3>Ośrodek Narciarski WOSiR Szelment</h3>
+          <p>Obiekt sportowo-rekreacyjny przy jeziorze Szelment, oferujący doskonałe warunki do narciarstwa i sportów wodnych.</p>
+          <a href="https://wosir-szelment.pl" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/aquaparksuwalki.jpg" alt="AQUA PARK Suwałki">
+          <h3>AQUA PARK Suwałki</h3>
+          <p>Nowoczesny aqua park z atrakcjami wodnymi – idealne miejsce na letni relaks.</p>
+          <a href="https://aquapark.suwalki.pl/" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/mosir-olecko.jpg" alt="MOSIR Olecko">
+          <h3>MOSIR Olecko</h3>
+          <p>Oferta dla miłośników sportów zimowych – emocje sportowe w regionie Olecka.</p>
+          <a href="https://mosir.olecko.pl" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sekcja 4: Rozrywka -->
+  <section id="rozrywka" data-aos="fade-up">
+    <div class="container">
+      <h2>Rozrywka</h2>
+      <div class="attractions-grid">
+        <div class="attraction-item">
+          <img src="img/atrakcje/przystanek.jpg" alt="Przystanek Olecko">
+          <h3>Przystanek Olecko</h3>
+          <p>Przystanek Olecko to wyjątkowe miejsce, łączące lokalną kulturę z nowoczesnym designem i artystycznymi wydarzeniami.</p>
+          <a href="https://rokmg.pl/aktualnosci-47-przystanek_olecko.html" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+        <div class="attraction-item">
+          <img src="img/atrakcje/rajd.jpg" alt="Rajd Polski">
+          <h3>Rajd Polski</h3>
+          <p>Rajd Polski – dynamiczne wydarzenie sportowe przyciągające entuzjastów motoryzacji oraz miłośników adrenaliny na Warmii i Mazurach.</p>
+          <a href="https://warmia.mazury.pl/sport-i-zdrowie/aktualnosci/9673-rajd-polski-na-dluzej-zagosci-na-warmii-i-mazurach" target="_blank" class="btn">ZOBACZ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sekcja 5: Dodatkowe informacje -->
+  <section id="additional-info" data-aos="fade-up">
+    <div class="container">
+      <h2>Więcej atrakcji</h2>
+      <p>Sprawdź oferty bezpośrednio u właścicieli oraz na stronach informacyjnych – znajdziesz szczegóły dotyczące godzin otwarcia, wydarzeń i dodatkowych atrakcji w regionie.</p>
+    </div>
+  </section>
+
+  <!-- Skrypty -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+  <script>
+    // Skrypt karuzeli w sekcji Atrakcje w Siedlisku
+    document.addEventListener("DOMContentLoaded", function() {
+      const track = document.getElementById('carouselTrack');
+      const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      let currentSlideIndex = 0;
+      
+      function updateWidths() {
+        let visibleSlides = window.innerWidth > 800 ? 4 : window.innerWidth > 500 ? 2 : 1;
+        let slideWidth = track.getBoundingClientRect().width / visibleSlides;
+        slides.forEach(slide => slide.style.width = slideWidth + 'px');
+      }
+      
+      function moveToSlide(index) {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(-${slideWidth * index}px)`;
+        currentSlideIndex = index;
+        checkButtons();
+      }
+      
+      function checkButtons() {
+        prevBtn.style.display = currentSlideIndex === 0 ? 'none' : 'block';
+        nextBtn.style.display = currentSlideIndex >= slides.length - 4 ? 'none' : 'block';
+      }
+      
+      prevBtn.addEventListener('click', () => {
+        if (currentSlideIndex > 0) moveToSlide(currentSlideIndex - 1);
+      });
+      nextBtn.addEventListener('click', () => {
+        if (currentSlideIndex < slides.length - 4) moveToSlide(currentSlideIndex + 1);
+      });
+      
+      window.addEventListener('resize', () => {
+        updateWidths();
+        moveToSlide(currentSlideIndex);
+      });
+      
+      updateWidths();
+      checkButtons();
+    });
+  </script>
+  <script>
+    // Funkcje otwierania i zamykania bocznego menu
+    function openNav() {
+      document.getElementById("sideNav").style.width = "250px";
+    }
+    function closeNav() {
+      document.getElementById("sideNav").style.width = "0";
+    }
+  </script>
+</body>
+</html>
