@@ -31,7 +31,7 @@
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 2000; /* Menu zawsze na wierzchu */
+    z-index: 2000;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.8);
@@ -143,7 +143,7 @@
   }
   
   /* ==========================
-     HERO SECTION (ogólny)
+     HERO SECTION (OGÓLNY)
      ========================== */
   .hero {
     position: relative;
@@ -217,78 +217,12 @@
   }
   
   /* ==========================
-     FEATURED IMAGES (kolaż)
+     STYLE GLOBALNE DLA POZOSTAŁYCH SEKCJI
+     (np. oferta, galeria, lista atrakcji, dodatkowe atrakcje, 
+      mapka, opinie Google, rezerwacje, modal, stopka, lightbox)
      ========================== */
-  .featured-images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 300px 300px;
-    gap: 10px;
-    width: 90%;
-    max-width: 1200px;
-    margin: 40px auto;
-  }
-  .left-image {
-    grid-row: 1 / span 2;
-    grid-column: 1;
-    overflow: hidden;
-    position: relative;
-  }
-  .left-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .right-top {
-    grid-row: 1;
-    grid-column: 2;
-    display: flex;
-    gap: 10px;
-  }
-  .right-top img {
-    width: 50%;
-    object-fit: cover;
-  }
-  .right-bottom {
-    grid-row: 2;
-    grid-column: 2;
-    display: flex;
-    gap: 10px;
-  }
-  .right-bottom img {
-    width: 50%;
-    object-fit: cover;
-  }
-  .right4-wrapper {
-    position: relative;
-    width: 50%;
-    overflow: hidden;
-  }
-  .right4-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .show-all-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: background 0.3s ease;
-  }
-  .show-all-btn:hover {
-    background: rgba(0,0,0,0.8);
-  }
   
-  /* ==========================
-     KOLAŻ LINKÓW (offer-collage)
-     ========================== */
+  /* Offer-collage */
   .offer-collage {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -329,9 +263,7 @@
     transform: scale(1.05);
   }
   
-  /* ==========================
-     GALERIA (gallery)
-     ========================== */
+  /* Galeria */
   .gallery {
     padding: 60px 0;
     background-color: #f4f4f4;
@@ -353,9 +285,7 @@
     cursor: pointer;
   }
   
-  /* ==========================
-     ATTRACTIONS LIST (Okoliczne Atrakcje)
-     ========================== */
+  /* Okoliczne atrakcje */
   #attractions-list {
     padding: 60px 0;
     background: #fff;
@@ -394,9 +324,7 @@
     color: #555;
   }
   
-  /* ==========================
-     ADDITIONAL ATTRACTIONS (opcjonalna)
-     ========================== */
+  /* Dodatkowe atrakcje */
   #additional-attractions {
     padding: 40px 0;
     background: #f4f4f4;
@@ -413,158 +341,7 @@
     margin: 0 auto;
   }
   
-  /* ==========================
-     DESCRIPTION WRAPPER (opis + ewentualne wideo)
-     ========================== */
-  .description-wrapper {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-  }
-  .description-text {
-    flex: 2;
-  }
-  .description-video {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .description-video video {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 5px;
-  }
-  
-  /* ==========================
-     PROPERTY WRAPPER (opis + sticky formularz)
-     ========================== */
-  .property-wrapper {
-    background: #fff;
-    padding: 40px 0;
-  }
-  .property-container {
-    display: flex;
-    gap: 40px;
-  }
-  .property-left {
-    flex: 2;
-  }
-  .property-left h2 {
-    font-size: 32px;
-    margin-bottom: 10px;
-  }
-  .property-left .subtitle {
-    font-size: 18px;
-    color: #777;
-    margin-bottom: 20px;
-  }
-  .property-left p {
-    line-height: 1.7;
-    margin-bottom: 20px;
-  }
-  .amenities-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-    margin-bottom: 20px;
-  }
-  .amenities-list li {
-    background: #f7f7f7;
-    border: 1px solid #ddd;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #666;
-  }
-  
-  /* ==========================
-     PROPERTY RIGHT: VIDEO Z FORMULARZEM (OVERLAY)
-     ========================== */
-  .property-right {
-    flex: 1;
-    position: sticky;
-    top: 20px;
-    align-self: start;
-    overflow: hidden;
-    width: 320px;
-  }
-  .video-with-overlay-container {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    border: 5px solid #ccc;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    overflow: hidden;
-  }
-  .form-video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-  .form-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 20px;
-    padding: 15px;
-    background: rgba(0,0,0,0.5);
-    border-radius: 8px;
-    color: #fff;
-    z-index: 1;
-    overflow-y: auto;
-    max-height: calc(100% - 40px);
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-    border: 2px solid rgba(255,255,255,0.4);
-  }
-  .form-overlay h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    text-align: center;
-  }
-  .form-overlay label {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 4px;
-    font-weight: bold;
-    color: #fff;
-  }
-  .form-overlay input {
-    width: 100%;
-    margin-bottom: 8px;
-    padding: 6px;
-    border-radius: 3px;
-    border: none;
-    font-size: 14px;
-  }
-  .form-overlay button {
-    display: block;
-    background: #007BFF;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 10px auto 0;
-    transition: background 0.3s ease;
-  }
-  .form-overlay button:hover {
-    background: #0056b3;
-  }
-  
-  /* ==========================
-     MAP SECTION
-     ========================== */
+  /* Mapka */
   .map-section {
     background: #fff;
     padding: 40px 0;
@@ -584,9 +361,7 @@
     margin: 0 auto;
   }
   
-  /* ==========================
-     GOOGLE REVIEWS SECTION
-     ========================== */
+  /* Opinie Google */
   .google-reviews-section {
     background: #f8f8f8;
     padding: 60px 0;
@@ -602,9 +377,7 @@
     margin-bottom: 30px;
   }
   
-  /* ==========================
-     REZERWACJA (reservation) & MODAL
-     ========================== */
+  /* Rezerwacja & Modal */
   .reservation {
     padding: 60px 0;
     background-color: #f4f4f4;
@@ -655,9 +428,6 @@
     color: #007BFF;
   }
   
-  /* ==========================
-     MODAL
-     ========================== */
   .modal {
     display: none;
     position: fixed;
@@ -713,9 +483,7 @@
     margin-top: 15px;
   }
   
-  /* ==========================
-     FOOTER
-     ========================== */
+  /* Stopka */
   footer {
     background: #333;
     color: #fff;
@@ -726,9 +494,7 @@
     margin: 5px 0;
   }
   
-  /* ==========================
-     LIGHTBOX
-     ========================== */
+  /* Lightbox */
   .lightbox {
     display: none;
     position: fixed;
@@ -790,22 +556,12 @@
   }
   
   /* ==========================
-     MEDIA QUERIES
+     MEDIA QUERIES GLOBALNE
+     (Usunięto reguły dotyczące konradowych chat)
      ========================== */
   @media (max-width: 992px) {
     .offer-collage {
       grid-template-columns: repeat(2, 1fr);
-    }
-    .property-container {
-      flex-direction: column;
-    }
-    .property-right {
-      position: static;
-      margin-top: 20px;
-      width: 100%;
-    }
-    .video-with-overlay-container {
-      height: 500px;
     }
   }
   @media (max-width: 576px) {
@@ -817,33 +573,8 @@
     }
   }
   @media (max-width: 768px) {
-    .featured-images {
+    .gallery-grid {
       grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
-    }
-    .left-image {
-      grid-row: 1;
-      grid-column: 1;
-      height: 250px;
-    }
-    .right-top,
-    .right-bottom {
-      grid-row: auto;
-      grid-column: 1;
-      display: flex;
-      gap: 10px;
-    }
-    .right-top img,
-    .right-bottom img,
-    .right4-wrapper {
-      width: 50%;
-    }
-    .right-top,
-    .right-bottom {
-      height: 200px;
-    }
-    .show-all-btn {
-      font-size: 12px;
     }
     .hero-content h2 {
       font-size: 36px;
@@ -904,7 +635,7 @@
   }
   
   /* ==========================
-     INFO ROW (dodatkowe opisy)
+     INFO ROW
      ========================== */
   .info-row {
     display: flex;

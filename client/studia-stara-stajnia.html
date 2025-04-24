@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Studia w Starej Stajni - Kukowo</title>
+  <!-- Globalne style -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- Style specyficzne dla podstrony -->
+  <link rel="stylesheet" href="styles/studia_stara_stajnia.css">
+  <!-- header/footer -->
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <!-- wizard styles -->
+  <link rel="stylesheet" href="styles/wizard.css">
+  <!-- Czcionki Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("WU6nK13OCtPUDJJad");
+    })();
+  </script>
+  <script src="scripts/email.js" defer></script>
+</head>
+<body>
+  <!-- Side Navigation -->
+  <div id="sideNav" class="side-nav">
+    <div class="side-nav-header">Menu Witryny</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Strona Główna</a>
+    <a href="offer.html">Odkryj Siedlisko</a>
+    <a href="gallery.html">Galeria</a>
+    <a href="reservation.html">Rezerwacje</a>
+    <a href="contact.html">Kontakt</a>
+  </div>
+
+  <!-- Dynamiczny header -->
+  <div id="header-placeholder"></div>
+
+  <!-- lewa strzałka do Konradowych Chat -->
+  <a href="konradowe-chaty.html" class="chaty-apartamenty-link link-left">
+    <img src="img/icons/arrow-left-brown.png" alt="Wróć do chat">
+    <span class="arrow-text">
+      Ucieknij od zgiełku…<br>
+      odkryj Konradowe Chaty!
+    </span>
+  </a>
+
+  <!-- prawa strzałka do Kamperowiska -->
+  <a href="kampery.html" class="chaty-apartamenty-link link-right">
+    <span class="arrow-text">
+      Ruszaj w trasę…<br>
+      odwiedź nasze kamperowisko!
+    </span>
+    <img src="img/icons/arrow-right-brown.png" alt="Przejdź na kamperowisko">
+  </a>
+
+  <!-- Featured Images -->
+  <section class="featured-images" data-aos="fade-up">
+    <div class="left-image"><img class="gallery-img" src="" alt=""></div>
+    <div class="right-top">
+      <img class="gallery-img" src="" alt="">
+      <img class="gallery-img" src="" alt="">
+    </div>
+    <div class="right-bottom">
+      <img class="gallery-img" src="" alt="">
+      <div class="right4-wrapper">
+        <img class="gallery-img" src="" alt="">
+        <button class="show-all-btn" id="showAllBtn">Pokaż wszystkie</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ukryte dodatkowe zdjęcia -->
+  <div id="extraImages" style="display:none;"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="Powiększony obraz">
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
+  </div>
+
+  <!-- Property Wrapper -->
+  <section class="property-wrapper" data-aos="fade-up">
+    <div class="container property-card">
+      <div class="property-container">
+        <!-- Lewa kolumna -->
+        <div class="property-left">
+          <h2>Studia w Starej Stajni</h2>
+          <p class="subtitle">Komfortowa przestrzeń w klimatycznym stylu stajni</p>
+
+          <!-- selector pokoi -->
+          <div class="room-selector">
+            <button data-room="studio34" class="active">Studio 3–4 os.</button>
+            <button data-room="studio4">Studio 4 os.</button>
+            <button data-room="double">Pokój dwuosobowy</button>
+          </div>
+
+          <!-- opis pokoju -->
+          <div id="room-description"></div>
+
+          <h3>Udogodnienia</h3>
+          <ul class="amenities-list">
+            <li class="amenity-kitchen">Kuchnia / aneks kuchenny</li>
+            <li class="amenity-sofa">Kominek</li>
+            <li class="amenity-bedroom">Sypialnie na piętrze</li>
+            <li class="amenity-terrace">Taras</li>
+            <li class="amenity-bathroom">Łazienka z prysznicem</li>
+            <li class="amenity-tech">Wi-Fi, telewizor</li>
+          </ul>
+
+          <div class="attractions-preview">
+            <h3>Jakie atrakcje na mnie czekają?</h3>
+            <p>Wybierz się na spacer po okolicznych łąkach i lasach. Skorzystaj z lokalnych atrakcji i poznaj naturę.</p>
+            <a href="okoliczne-atrakcje.html" class="btn-attractions">Poznaj atrakcje</a>
+          </div>
+        </div>
+
+        <!-- Prawa kolumna -->
+        <div class="property-right">
+          <div class="video-with-overlay-container">
+            <video src="videos/studio-stajnia-preview.mp4" autoplay muted loop class="form-video-bg"></video>
+            <form id="quickReservationForm" class="form-overlay">
+              <input type="hidden" name="roomType" value="studio34">
+              <h3>Zapytaj o rezerwację</h3>
+              <label for="adults">Dorośli:</label>
+              <input type="number" id="adults" name="adults" min="1" value="2">
+              <label for="children">Dzieci：</label>
+              <input type="number" id="children" name="children" min="0" value="0">
+              <label for="arrival">Data przyjazdu：</label>
+              <input type="date" id="arrival" name="arrival">
+              <label for="departure">Data wyjazdu：</label>
+              <input type="date" id="departure" name="departure">
+              <button type="button" id="askForReservationBtn" class="btn-reservation">Zapytaj o rezerwację</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mapa -->
+  <section class="map-section" data-aos="fade-up">
+    <div class="container">
+      <h3>Jak dojechać?</h3>
+      <p>Najwygodniej dojechać samochodem. Poniżej mapka z lokalizacją Studia w Starej Stajni.</p>
+      <div class="map-iframe-wrapper">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.633642572497!2d22.520234!3d54.034183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e1f94f217ce04d%3A0x5f47fe7c89da2d4d!2sKukowo%2033A%2C%2019-400 Olecko!5e0!3m2!1spl!2spl!4v1670000000000!5m2!1spl!2spl"
+          width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="faq-heading">Najczęściej zadawane pytania</h2>
+      <div class="faq-item">
+        <button class="faq-question">Czy mogę przyjechać z psem?</button>
+        <div class="faq-answer">Tak! Zwierzęta są mile witane – prosimy o wcześniejszą informację.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Czy studio ma ogrzewanie?</button>
+        <div class="faq-answer">Oczywiście – salon wyposażony jest w kominek, a całe studio ma dodatkowe ogrzewanie elektryczne.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Czy jest zasięg i Wi‐Fi?</button>
+        <div class="faq-answer">Tak – zapewniamy darmowe Wi‐Fi oraz stabilny zasięg.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Godziny zameldowania i wymeldowania?</button>
+        <div class="faq-answer">Zameldowanie od 15:00, wymeldowanie do 11:00. Możliwe indywidualne ustalenia.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opinie Google -->
+  <section class="google-reviews-section" data-aos="fade-up">
+    <div class="container">
+      <h2>Opinie Gości</h2>
+      <p class="reviews-subtitle">Sprawdź, co mówią nasi goście w Google</p>
+      <script src="https://static.elfsight.com/platform/platform.js" async></script>
+      <div class="elfsight-app-e5fba9f6-eb88-4522-afc0-0fd9534bdb20" data-elfsight-app-lazy></div>
+    </div>
+  </section>
+
+<!-- gdzieś w body -->
+<div id="wizard-placeholder"></div>
+<script>
+  fetch('wizard.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('wizard-placeholder').innerHTML = html;
+      // dopiszemy skrypt
+      const s = document.createElement('script');
+      s.src = 'scripts/wizard.js';
+      document.body.appendChild(s);
+    })
+    .catch(e => console.error('Nie udało się wczytać wizard.html', e));
+</script>
+
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="scripts/load-header.js"></script>
+  <script src="scripts/header-scroll.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/faq-toggle.js"></script>
+  <script src="scripts/load-footer.js"></script>
+
+  <!-- room/gallery/lightbox init -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const rooms = {
+        studio34: {
+          description: `<p>Studio dwupoziomowe (3–4 os.) – 60 m² z tarasem, aneksem kuchennym, kominkiem, sypialnią na piętrze i łazienką. TV + Wi-Fi.</p>`,
+          gallery: [
+            'img/studia_stara_stajnia/studio-main.jpg',
+            'img/studia_stara_stajnia/studio-1.jpg',
+            'img/studia_stara_stajnia/studio-2.jpg',
+            'img/studia_stara_stajnia/studio-3.jpg',
+            'img/studia_stara_stajnia/studio-4.jpg'
+          ],
+          extras: [
+            'img/studia_stara_stajnia/studio-5.jpg',
+            'img/studia_stara_stajnia/studio-6.jpg',
+            'img/studia_stara_stajnia/studio-7.jpg',
+            'img/studia_stara_stajnia/studio-8.jpg',
+            'img/studia_stara_stajnia/studio-9.jpg',
+            'img/studia_stara_stajnia/studio-10.jpg'
+          ]
+        },
+        studio4: {
+          description: `<p>Studio dla 4 os. – identyczne udogodnienia, plus dodatkowe miejsce dla czwartej osoby.</p>`,
+          gallery: [
+            'img/studia_stara_stajnia/studio-main4.jpg',
+            'img/studia_stara_stajnia/studio4-1.jpg',
+            'img/studia_stara_stajnia/studio4-2.jpg',
+            'img/studia_stara_stajnia/studio4-3.jpg',
+            'img/studia_stara_stajnia/studio4-4.jpg'
+          ],
+          extras: [
+            'img/studia_stara_stajnia/studio4-5.jpg',
+            'img/studia_stara_stajnia/studio4-6.jpg',
+            'img/studia_stara_stajnia/studio4-7.jpg',
+            'img/studia_stara_stajnia/studio4-8.jpg',
+            'img/studia_stara_stajnia/studio4-9.jpg',
+            'img/studia_stara_stajnia/studio4-10.jpg'
+          ]
+        },
+        double: {
+          description: `<p>Pokój dwuosobowy – 39 m² z jadalnią, podwójnym łóżkiem, aneksem kuchennym (lodówka, płyta, czajnik), TV i Wi-Fi.</p>`,
+          gallery: [
+            'img/studia_stara_stajnia/double-main.jpg',
+            'img/studia_stara_stajnia/double-1.jpg',
+            'img/studia_stara_stajnia/double-2.jpg',
+            'img/studia_stara_stajnia/double-3.jpg',
+            'img/studia_stara_stajnia/double-4.jpg'
+          ],
+          extras: [
+            'img/studia_stara_stajnia/double-5.jpg',
+            'img/studia_stara_stajnia/double-6.jpg',
+            'img/studia_stara_stajnia/double-7.jpg',
+            'img/studia_stara_stajnia/double-8.jpg',
+            'img/studia_stara_stajnia/double-9.jpg',
+            'img/studia_stara_stajniastudio-10.jpg'
+          ]
+        }
+      };
+
+      let currentImages = [], currentIndex = 0;
+      const selector   = document.querySelector('.room-selector');
+      const desc       = document.getElementById('room-description');
+      const thumbs     = document.querySelectorAll('.gallery-img');
+      const extraDiv   = document.getElementById('extraImages');
+      const lightbox   = document.getElementById('lightbox');
+      const lbImg      = document.getElementById('lightbox-img');
+      const showAllBtn = document.getElementById('showAllBtn');
+      const askBtn     = document.getElementById('askForReservationBtn');
+
+      // funkcje odwołujące się do dynamicznie wstrzykniętych elementów
+      const roomTypeField = () => document.getElementById('roomTypeField');
+      const selectedRT    = () => document.getElementById('selectedRoomType');
+      const modal         = () => document.getElementById('reservationModal');
+
+      function renderRoom(key) {
+        const {description, gallery, extras} = rooms[key];
+        desc.innerHTML = description;
+        thumbs.forEach((img,i)=> img.src = gallery[i]||'');
+        extraDiv.innerHTML = '';
+        extras.forEach(src=>{
+          const img = document.createElement('img');
+          img.src = src; img.classList.add('gallery-img');
+          extraDiv.appendChild(img);
+        });
+        currentImages = gallery.concat(extras);
+        attachClicks();
+      }
+      function attachClicks(){
+        document.querySelectorAll('.gallery-img').forEach((img,i)=>{
+          img.onclick = ()=>{
+            currentIndex = i;
+            lbImg.src = currentImages[i];
+            lightbox.style.display = 'block';
+          };
+        });
+      }
+      window.closeLightbox = ()=> lightbox.style.display='none';
+      window.changeImage   = delta => {
+        currentIndex = (currentIndex + delta + currentImages.length) % currentImages.length;
+        lbImg.src = currentImages[currentIndex];
+      };
+
+      selector.addEventListener('click', e=>{
+        if(e.target.tagName!=='BUTTON') return;
+        selector.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+        e.target.classList.add('active');
+        renderRoom(e.target.dataset.room);
+      });
+      showAllBtn.addEventListener('click', ()=> thumbs[0] && thumbs[0].click());
+      askBtn.addEventListener('click', ()=>{
+        const active = document.querySelector('.room-selector button.active').textContent.trim();
+        roomTypeField().value = active;
+        selectedRT().value    = active;
+        modal().style.display = 'block';
+      });
+      document.addEventListener('click', e=>{
+        if(e.target.id==='closeModal') modal().style.display='none';
+      });
+      document.addEventListener('contextmenu', e=>{
+        if(e.target.tagName==='IMG'||e.target.tagName==='VIDEO') e.preventDefault();
+      });
+
+      // start
+      renderRoom('studio34');
+      AOS.init();
+    });
+  </script>
+  <!-- skrypt wizarda -->
+  <script src="scripts/wizard.js" defer></script>
+</body>
+</html>

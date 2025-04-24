@@ -1,0 +1,81 @@
+/* Wizard: pasek kroków */
+.wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5em;
+    font-family: var(--font-headings);
+  }
+  .step-indicator {
+    flex: 1;
+    text-align: center;
+    padding: 0.5em;
+    border-bottom: 2px solid #ddd;
+    color: #777;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .step-indicator.active {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    font-weight: bold;
+  }
+  
+  /* Formularz wizard */
+  #wizardForm {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  #wizardForm .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  #wizardForm .form-row label {
+    flex: 0 0 120px;
+    margin-right: 0.5em;
+    font-weight: 500;
+  }
+  #wizardForm .form-row input,
+  #wizardForm .form-row textarea {
+    flex: 1;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: var(--font-body);
+  }
+  #wizardForm .form-row textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* Nadpisanie tylko dla podsumowania */
+  #wizardForm .form-row.summary {
+    display: block;
+    margin-top: 1em;
+  }
+  #wizardForm .form-row.summary p {
+    margin: 0.5em 0;
+  }
+  
+  /* Nawigacja */
+  .wizard-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5em;
+  }
+  .wizard-btn {
+    background: transparent;
+    border: none;
+    font-family: var(--font-special);
+    font-size: 1rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    padding: 0.5em 1em;
+  }
+  .wizard-btn:disabled {
+    color: #ccc;
+    cursor: default;
+  }
+  
+  /* Podsumowanie – już nie potrzebuje nic więcej */
+  

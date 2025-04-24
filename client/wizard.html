@@ -1,0 +1,99 @@
+<!-- wizard.html -->
+<div id="reservationModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">&times;</span>
+      <h2>Zapytanie o rezerwację</h2>
+      <p class="reservation-intro">
+        Chcesz dokonać rezerwacji?<br>
+        Zadzwoń lub wyślij do nas zgłoszenie!
+      </p>
+      <a href="tel:+48123456789" class="phone-link">
+        <img src="img/icons/telefon.png" alt="Telefon">+48 604 083 659
+      </a>
+  
+      <!-- Wizard steps indicator -->
+      <div class="wizard-steps">
+        <div class="step-indicator active" data-step="1">1. Pobyt</div>
+        <div class="step-indicator"       data-step="2">2. Kontakt</div>
+        <div class="step-indicator"       data-step="3">3. Wyślij</div>
+      </div>
+  
+      <form id="wizardForm" class="email-form" novalidate>
+        <!-- honeypot -->
+        <div class="honeypot" aria-hidden="true">
+          <input type="text" name="_hp" tabindex="-1" />
+        </div>
+        <!-- ukryty typ pokoju -->
+        <input type="hidden" name="roomType" id="roomTypeField" value="">
+  
+        <!-- Krok 1 -->
+        <div class="step" data-step="1">
+          <div class="form-row">
+            <label>Wybrano apartament:</label>
+            <input type="text" id="selectedRoomType" readonly>
+          </div>
+          <div class="form-row">
+            <label for="modalAdults">Dorośli:</label>
+            <input type="number" id="modalAdults" name="modalAdults" min="1" required>
+          </div>
+          <div class="form-row">
+            <label for="modalChildren">Dzieci:</label>
+            <input type="number" id="modalChildren" name="modalChildren" min="0" required>
+          </div>
+          <div class="form-row">
+            <label for="modalAnimals">Zwierzęta:</label>
+            <input type="number" id="modalAnimals" name="modalAnimals" min="0" required>
+          </div>
+          <div class="form-row">
+            <label for="modalArrival">Data przyjazdu:</label>
+            <input type="date" id="modalArrival" name="modalArrival" required>
+          </div>
+          <div class="form-row">
+            <label for="modalDeparture">Data wyjazdu:</label>
+            <input type="date" id="modalDeparture" name="modalDeparture" required>
+          </div>
+        </div>
+  
+        <!-- Krok 2 -->
+        <div class="step" data-step="2" style="display:none;">
+          <div class="form-row">
+            <label for="firstName">Imię:</label>
+            <input type="text" id="firstName" name="firstName" required>
+          </div>
+          <div class="form-row">
+            <label for="lastName">Nazwisko:</label>
+            <input type="text" id="lastName" name="lastName" required>
+          </div>
+          <div class="form-row">
+            <label for="phone">Telefon:</label>
+            <input type="tel" id="phone" name="phone" required pattern="^\+?\d{7,15}$" placeholder="+48123456789">
+          </div>
+          <div class="form-row">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+  
+        <!-- Krok 3 -->
+        <div class="step" data-step="3" style="display:none;">
+          <div class="form-row">
+            <label for="message">Dodatkowe pytania / uwagi:</label>
+            <textarea id="message" name="message" rows="3"></textarea>
+          </div>
+          <div class="form-row summary"></div>
+        </div>
+  
+        <!-- Nawigacja -->
+        <div class="wizard-nav">
+          <button type="button" class="wizard-btn" id="prevBtn" disabled>← Wstecz</button>
+          <button type="button" class="wizard-btn" id="nextBtn">Dalej →</button>
+          <button type="submit" class="btn-submit" id="submitBtn" style="display:none;">Wyślij zapytanie</button>
+          <p class="form-response"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Skrypt nawigacji wizard -->
+  <script src="scripts/wizard.js" defer></script>
+  
