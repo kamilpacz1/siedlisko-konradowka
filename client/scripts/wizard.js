@@ -18,16 +18,20 @@
   }
 
   // 3) Zamknięcie modala
+  // a) klik w tło
   modal.addEventListener('click', e => {
-    // klik w tło lub w ✕
-    if (e.target === modal || e.target.id === 'closeModal') {
+    if (e.target === modal) {
       modal.style.display = 'none';
     }
   });
-  // zatrzymaj propagację kliknięć wewnątrz okna (żeby nie zamykało przy kliknięciu formularza)
-  modal.querySelector('.modal-content').addEventListener('click', e => {
-    e.stopPropagation();
-  });
+  // b) klik w ikonę ✕
+  const closeIcon = document.getElementById('closeModal');
+  if (closeIcon) {
+    closeIcon.addEventListener('click', e => {
+      e.stopPropagation();
+      modal.style.display = 'none';
+    });
+  }
 
   // 4) Blokada wyboru przeszłych dat
   const arrival   = form.querySelector('#modalArrival');
@@ -101,7 +105,6 @@
 
   // 6) Pozwól EmailJS przechwycić submit
   // Usuń lub zakomentuj wszystkie e.preventDefault() związane z form.submit()
-  // jeśli gdzieś był, to go usuń — EmailJS sam zbiera i wysyła dane.
 
   // 7) Wyświetlamy pierwszy krok
   showStep(0);
