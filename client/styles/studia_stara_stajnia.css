@@ -594,6 +594,11 @@ h1, h3, .side-nav-header, .header-container nav ul li a,
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   transition: background 0.25s ease, color 0.25s ease;
 }
+
+.form-response:empty {
+  display: none;
+}
+
 .form-response.success {
   background: #8a7d72;
   border: 2px solid #6e5f54;

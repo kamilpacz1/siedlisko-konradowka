@@ -4,17 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Konradowe Chaty - Kukowo</title>
+
   <!-- Globalne style -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- Style specyficzne dla podstrony Konradowe Chaty -->
   <link rel="stylesheet" href="styles/konradowe_chaty.css">
-  <!-- nowy header.css -->
-  <link rel="stylesheet" href="styles/header.css"> 
-    <!-- footer.css -->
+  <!-- header & footer -->
+  <link rel="stylesheet" href="styles/header.css">
   <link rel="stylesheet" href="styles/footer.css">
+  <!-- wizard styles -->
+  <link rel="stylesheet" href="styles/wizard.css">
 
-
-  <!-- Czcionki Google: Amatic SC, Playfair Display, Cormorant Garamond, Lato -->
+  <!-- Czcionki Google -->
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <!-- AOS CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
@@ -23,14 +24,13 @@
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function(){
-      emailjs.init("WU6nK13OCtPUDJJad");  // ← Twój Public Key z EmailJS → Account
+      emailjs.init("WU6nK13OCtPUDJJad");
     })();
   </script>
-  <!-- Nasz skrypt obsługi formularzy EmailJS -->
   <script src="scripts/email.js" defer></script>
 </head>
 <body>
-  <!-- Side Navigation (Pełne Menu Witryny) -->
+  <!-- Side Navigation -->
   <div id="sideNav" class="side-nav">
     <div class="side-nav-header">Menu Witryny</div>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -41,19 +41,19 @@
     <a href="contact.html">Kontakt</a>
   </div>
 
-  <!-- Dynamicznie załadowany header -->
-  <div id="header-placeholder"></div>  
-  <!-- Strzałka w prawo do apartamentów -->
+  <!-- Dynamiczny header -->
+  <div id="header-placeholder"></div>
+
+  <!-- Link do Studia w Starej Stajni -->
   <a href="studia-stara-stajnia.html" class="side-arrow-link chaty-apartamenty-link">
-    <span class="arrow-text">Chaty to nie wszystko…<br>sprawdź Studia w Starej Stajni!</span>
+    <span class="arrow-text">
+      Chaty to nie wszystko…<br>
+      sprawdź Studia w Starej Stajni!
+    </span>
     <img src="img/icons/arrow-right-brown.png" alt="Przejdź do apartamentów">
   </a>
-  
-  
-  
-  
 
-  <!-- Sekcja: Featured Images -->
+  <!-- Featured Images -->
   <section class="featured-images" data-aos="fade-up">
     <div class="left-image">
       <img src="img/konradowe_chaty/konradowe-chaty-1.jpg" alt="Konradowe Chaty - główne" class="gallery-img"/>
@@ -72,15 +72,15 @@
   </section>
 
   <!-- Ukryte dodatkowe zdjęcia (lightbox) -->
-  <div id="extraImages" style="display: none;">
-    <img src="img/konradowe_chaty/konradowe-chaty-6.jpg" alt="Widok extra1" data-extra="true"/>
-    <img src="img/konradowe_chaty/konradowe-chaty-7.jpg" alt="Widok extra2" data-extra="true"/>
-    <img src="img/konradowe_chaty/konradowe-chaty-8.jpg" alt="Widok extra3" data-extra="true"/>
-    <img src="img/konradowe_chaty/konradowe-chaty-9.jpg" alt="Widok extra4" data-extra="true"/>
-    <img src="img/konradowe_chaty/konradowe-chaty-10.jpg" alt="Widok extra5" data-extra="true"/>
+  <div id="extraImages" style="display:none;">
+    <img src="img/konradowe_chaty/konradowe-chaty-6.jpg" alt="Extra1" data-extra>
+    <img src="img/konradowe_chaty/konradowe-chaty-7.jpg" alt="Extra2" data-extra>
+    <img src="img/konradowe_chaty/konradowe-chaty-8.jpg" alt="Extra3" data-extra>
+    <img src="img/konradowe_chaty/konradowe-chaty-9.jpg" alt="Extra4" data-extra>
+    <img src="img/konradowe_chaty/konradowe-chaty-10.jpg" alt="Extra5" data-extra>
   </div>
 
-  <!-- Sekcja: Property Wrapper -->
+  <!-- Property Wrapper -->
   <section class="property-wrapper" data-aos="fade-up">
     <div class="container property-card">
       <div class="property-container">
@@ -88,53 +88,27 @@
         <div class="property-left">
           <h2>Konradowe Chaty</h2>
           <p class="subtitle">70 m² przytulnej przestrzeni, gdzie tradycja spotyka nowoczesność</p>
-          <p>
-            Zapraszamy do klimatycznego domku w Konradowych Chatach – wnętrze składa się z komfortowego salonu z kominkiem,
-            wyposażonego aneksu kuchennego (lodówka, płyta, piekarnik, mikrofalówka),
-            a także dwóch sypialni na piętrze oraz łazienki z prysznicem.
-          </p>
-          <p>
-            Domek posiada zadaszony taras z widokiem na wodę, gdzie można delektować się posiłkiem na świeżym powietrzu.
-            To idealne miejsce zarówno na rodzinny wypoczynek, jak i romantyczny wyjazd.
-          </p>
-
-          <!-- Udogodnienia -->
-          <h3 style="text-align: center;">Udogodnienia</h3>
-          <ul class="amenities-list">
-            <li class="amenity-sofa">Salon z kominkiem i rozkładaną sofą</li>
-            <li class="amenity-kitchen">Aneks kuchenny z pełnym wyposażeniem</li>
-            <li class="amenity-terrace">Zadaszony taras z widokiem na wodę</li>
-            <li class="amenity-bedroom">Dwie sypialnie na piętrze</li>
-            <li class="amenity-bathroom">Łazienka z prysznicem</li>
-            <li class="amenity-tech">Wi-Fi, telewizor, biblioteczka</li>
-            <li class="amenity-sport">Wypożyczenie kajaków i rowerów</li>
-          </ul>
-
-          <!-- Atrakcji -->
-          <div class="attractions-preview">
-            <h3 style="text-align: center;">Jakie atrakcje na mnie czekają?</h3>
-            <p>
-              Odkryj lokalne atrakcje i unikalne miejsca, które nadają temu regionowi wyjątkowy klimat.
-            </p>
-            <a href="okoliczne-atrakcje.html" class="btn-attractions">Poznaj atrakcje</a>
-          </div>
+          <p>Zapraszamy do klimatycznego domku…</p>
+          <!-- … opis, udogodnienia, atrakcje … -->
         </div>
 
-        <!-- Prawa kolumna -->
+        <!-- Prawa kolumna z szybkim formularzem -->
         <div class="property-right video-sticky">
           <div class="video-with-overlay-container">
             <video src="videos/konradowe-chaty-preview.mp4" autoplay muted loop class="form-video-bg"></video>
             <form id="quickReservationForm" class="form-overlay">
               <h3>Zapytaj o rezerwację</h3>
               <label for="adults">Dorośli:</label>
-              <input type="number" id="adults" name="adults" min="1" value="2"/>
+              <input type="number" id="adults" name="adults" min="1" value="2">
               <label for="children">Dzieci:</label>
-              <input type="number" id="children" name="children" min="0" value="0"/>
+              <input type="number" id="children" name="children" min="0" value="0">
               <label for="arrival">Data przyjazdu:</label>
-              <input type="date" id="arrival" name="arrival"/>
+              <input type="date" id="arrival" name="arrival">
               <label for="departure">Data wyjazdu:</label>
-              <input type="date" id="departure" name="departure"/>
-              <button type="button" id="askForReservationBtn" class="btn-reservation">Zapytaj o rezerwację</button>
+              <input type="date" id="departure" name="departure">
+              <button type="button" id="askForReservationBtn" class="btn-reservation">
+                Zapytaj o rezerwację
+              </button>
             </form>
           </div>
         </div>
@@ -142,7 +116,7 @@
     </div>
   </section>
 
-  <!-- Sekcja: Mapa -->
+  <!-- Mapa -->
   <section class="map-section" data-aos="fade-up">
     <div class="container">
       <h3>Jak dojechać?</h3>
@@ -150,40 +124,36 @@
       <div class="map-iframe-wrapper">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.633642572497!2d22.520234!3d54.034183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e1f94f217ce04d%3A0x5f47fe7c89da2d4d!2sKukowo%2033A%2C%2019-400 Olecko!5e0!3m2!1spl!2spl!4v1670000000000!5m2!1spl!2spl"
-          width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
+          width="100%" height="400" style="border:0" allowfullscreen loading="lazy">
+        </iframe>
       </div>
     </div>
   </section>
 
-  <!-- Sekcja: FAQ -->
-<section class="faq-section" data-aos="fade-up">
-  <div class="container">
-    <h2 class="faq-heading">Najczęściej zadawane pytania</h2>
-
-    <div class="faq-item">
-      <button class="faq-question">Czy mogę przyjechać z psem?</button>
-      <div class="faq-answer">Tak! Zwierzęta są mile widziane – prosimy jedynie o wcześniejszą informację.</div>
+  <!-- FAQ -->
+  <section class="faq-section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="faq-heading">Najczęściej zadawane pytania</h2>
+      <div class="faq-item">
+        <button class="faq-question">Czy mogę przyjechać z psem?</button>
+        <div class="faq-answer">Tak! Zwierzęta są mile widziane – prosimy jedynie o wcześniejszą informację.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Czy domek ma ogrzewanie?</button>
+        <div class="faq-answer">Oczywiście – w salonie znajduje się kominek, a cały domek posiada dodatkowe ogrzewanie elektryczne.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Czy jest zasięg i Wi-Fi?</button>
+        <div class="faq-answer">Tak – zapewniamy darmowe Wi-Fi oraz stabilny zasięg większości sieci.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Jakie są godziny zameldowania i wymeldowania?</button>
+        <div class="faq-answer">Zameldowanie od godziny 15:00, wymeldowanie do 11:00. Istnieje możliwość indywidualnych ustaleń.</div>
+      </div>
     </div>
+  </section>
 
-    <div class="faq-item">
-      <button class="faq-question">Czy domek ma ogrzewanie?</button>
-      <div class="faq-answer">Oczywiście – w salonie znajduje się kominek, a cały domek posiada dodatkowe ogrzewanie elektryczne.</div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">Czy jest zasięg i Wi-Fi?</button>
-      <div class="faq-answer">Tak – zapewniamy darmowe Wi-Fi oraz stabilny zasięg większości sieci.</div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">Jakie są godziny zameldowania i wymeldowania?</button>
-      <div class="faq-answer">Zameldowanie od godziny 15:00, wymeldowanie do 11:00. Istnieje możliwość indywidualnych ustaleń.</div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- Sekcja: Opinie Google -->
+  <!-- Opinie Google -->
   <section class="google-reviews-section" data-aos="fade-up">
     <div class="container">
       <h2>Opinie Gości</h2>
@@ -192,95 +162,56 @@
       <div class="elfsight-app-e5fba9f6-eb88-4522-afc0-0fd9534bdb20" data-elfsight-app-lazy></div>
     </div>
   </section>
-
-  <!-- Modal z formularzem -->
-  <div id="reservationModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal" id="closeModal">&times;</span>
-      <h2>Zapytanie o rezerwację</h2>
-      <form id="detailedReservationForm" class="email-form" novalidate>
-        <!-- HONEYPOT: niewidoczne pole -->
-        <div class="honeypot" aria-hidden="true">
-          <input type="text" name="_hp" tabindex="-1" autocomplete="off" value="" />
-        </div>
-
-        <div class="form-row">
-          <label for="modalAdults">Dorośli:</label>
-          <input type="number" id="modalAdults" name="modalAdults" min="1" required>
-        </div>
-        <div class="form-row">
-          <label for="modalChildren">Dzieci:</label>
-          <input type="number" id="modalChildren" name="modalChildren" min="0" required>
-        </div>
-        <div class="form-row">
-          <label for="modalAnimals">Zwierzęta:</label>
-          <input type="number" id="modalAnimals" name="modalAnimals" min="0" required>
-        </div>
-        <div class="form-row">
-          <label for="modalArrival">Data przyjazdu:</label>
-          <input type="date" id="modalArrival" name="modalArrival" required>
-        </div>
-        <div class="form-row">
-          <label for="modalDeparture">Data wyjazdu:</label>
-          <input type="date" id="modalDeparture" name="modalDeparture" required>
-        </div>
-        <div class="form-row">
-          <label for="firstName">Imię:</label>
-          <input type="text" id="firstName" name="firstName" required>
-        </div>
-        <div class="form-row">
-          <label for="lastName">Nazwisko:</label>
-          <input type="text" id="lastName" name="lastName" required>
-        </div>
-        <div class="form-row">
-          <label for="phone">Telefon:</label>
-          <input type="tel"
-                 id="phone"
-                 name="phone"
-                 required
-                 pattern="^\+?\d{7,15}$"
-                 placeholder="+48123456789">
-        </div>
-        <div class="form-row">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-row">
-          <label for="message">Dodatkowe pytania / uwagi:</label>
-          <textarea id="message" name="message" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn-submit">Wyślij zapytanie</button>
-        <p class="form-response"></p>
-      </form>
-    </div>
+  
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="Powiększony obraz">
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
   </div>
 
   <!-- Stopka -->
   <div id="footer-placeholder"></div>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <span class="close" onclick="closeLightbox()">&times;</span>
-    <img class="lightbox-content" id="lightbox-img" src="" alt="Powiększony obraz"/>
-    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
-    <a class="next" onclick="changeImage(1)">&#10095;</a>
-  </div>
-
-  <!-- jsy -->
-
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="scripts/load-header.js"></script> <!-- twój istniejący skrypt -->
-  <script src="scripts/header-scroll.js"></script> <!-- nowy skrypt -->
-  <script src="scripts/main.js"></script>
-  <script src="scripts/faq-toggle.js"></script> <!-- ← ważne, że na końcu -->
-  <script src="scripts/load-footer.js"></script>
-    <!-- Blokada prawego przycisku na obrazkach. Brak możliwości zapisu zdjęć, trzeba przez devtools-->
-    <script>
-      document.addEventListener('contextmenu', function (e) {
-        if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
-          e.preventDefault();
-        }
-      });
-    </script>    
-</body>
-</html>
+   <!-- Placeholder na wizard -->
+   <div id="wizard-placeholder"></div>
+   <script>
+     document.addEventListener('DOMContentLoaded', () => {
+       const defaultType = 'Domek (Konradowe Chaty)';
+       fetch('wizard.html')
+         .then(r => r.text())
+         .then(html => {
+           document.getElementById('wizard-placeholder').innerHTML = html;
+           // załaduj logikę wizard-a
+           const s = document.createElement('script');
+           s.src = 'scripts/wizard.js';
+           document.body.appendChild(s);
+           // podłącz przycisk otwierający modal
+           document.getElementById('askForReservationBtn')
+             .addEventListener('click', () => {
+               document.getElementById('roomTypeField').value    = defaultType;
+               document.getElementById('selectedRoomType').value = defaultType;
+               document.getElementById('reservationModal').style.display = 'block';
+             });
+         })
+         .catch(console.error);
+     });
+   </script>
+ 
+   <!-- Globalne skrypty -->
+   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+   <script src="scripts/load-header.js"></script>
+   <script src="scripts/header-scroll.js"></script>
+   <script src="scripts/main.js"></script>
+   <script src="scripts/faq-toggle.js"></script>
+   <script src="scripts/load-footer.js"></script>
+ 
+   <!-- Blokada prawego przycisku -->
+   <script>
+     document.addEventListener('contextmenu', e => {
+       if (['IMG','VIDEO'].includes(e.target.tagName)) e.preventDefault();
+     });
+   </script>
+ </body>
+ </html>

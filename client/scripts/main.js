@@ -1,187 +1,196 @@
-/******************************************************************************
- * 1) ORYGINALNY KOD Z TWOJEGO DOTYCHCZASOWEGO main.js
- ******************************************************************************/
-document.addEventListener('DOMContentLoaded', () => {
-  // Inicjalizacja AOS
-  AOS.init({
-    duration: 1000,
-    once: true
-  });
+// scripts/main.js
 
-  // Obsługa formularza rezerwacyjnego (symulacja)
+document.addEventListener('DOMContentLoaded', () => {
+  // ————————————————————————————————————————————————
+  // 1) Inicjalizacja AOS
+  // ————————————————————————————————————————————————
+  if (window.AOS) {
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  }
+
+  // ————————————————————————————————————————————————
+  // 2) Symulacja wysyłki prostego formularza rezerwacyjnego
+  // ————————————————————————————————————————————————
   const reservationForm = document.getElementById('reservationForm');
-  const formResponse = document.getElementById('formResponse');
-  if (reservationForm) {
-    reservationForm.addEventListener('submit', async (e) => {
+  const formResponse    = document.getElementById('formResponse');
+  if (reservationForm && formResponse) {
+    reservationForm.addEventListener('submit', async e => {
       e.preventDefault();
       try {
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(r => setTimeout(r, 1000));
         formResponse.textContent = "Rezerwacja wysłana pomyślnie (symulacja).";
         reservationForm.reset();
-      } catch (error) {
-        console.error('Błąd:', error);
+      } catch (err) {
+        console.error('Błąd symulacji rezerwacji:', err);
         formResponse.textContent = "Wystąpił błąd. Spróbuj ponownie.";
       }
     });
   }
 
-  // Side Navigation
-  window.openNav = function() {
-    document.getElementById("sideNav").style.width = "250px";
-  };
-  window.closeNav = function() {
-    document.getElementById("sideNav").style.width = "0";
-  };
+  // ————————————————————————————————————————————————
+  // 3) Side Navigation
+  // ————————————————————————————————————————————————
+  window.openNav  = () => { const nav = document.getElementById("sideNav"); if (nav) nav.style.width = "250px"; };
+  window.closeNav = () => { const nav = document.getElementById("sideNav"); if (nav) nav.style.width = "0"; };
 
-  // Lightbox
+  // ————————————————————————————————————————————————
+  // 4) Lightbox galerii
+  // ————————————————————————————————————————————————
   const galleryImages = document.querySelectorAll('.gallery-img');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
+  const lightbox      = document.getElementById('lightbox');
+  const lightboxImg   = document.getElementById('lightbox-img');
   const lightboxClose = document.querySelector('.lightbox .close');
-  let images = [];
-  let currentIndex = 0;
-  galleryImages.forEach((img, index) => {
+  let images = [], currentIndex = 0;
+
+  galleryImages.forEach((img, idx) => {
     images.push(img.src);
     img.addEventListener('click', () => {
-      currentIndex = index;
-      openLightbox();
-    });
-  });
-  function openLightbox() {
-    lightbox.style.display = 'block';
-    lightboxImg.src = images[currentIndex];
-  }
-  window.closeLightbox = function() {
-    lightbox.style.display = 'none';
-  };
-  window.changeImage = function(direction) {
-    currentIndex += direction;
-    if (currentIndex < 0) {
-      currentIndex = images.length - 1;
-    } else if (currentIndex >= images.length) {
-      currentIndex = 0;
-    }
-    lightboxImg.src = images[currentIndex];
-  };
-  if (lightboxClose) {
-    lightboxClose.addEventListener('click', closeLightbox);
-  }
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.style.display = 'none';
+      currentIndex = idx;
+      if (lightbox && lightboxImg) {
+        lightbox.style.display = 'block';
+        lightboxImg.src = images[currentIndex];
       }
     });
-  }
+  });
 
-  // Obsługa przycisku "Pokaż wszystkie" (jeśli istnieje)
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', () => {
+      if (lightbox) lightbox.style.display = 'none';
+    });
+  }
+  if (lightbox) {
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) lightbox.style.display = 'none';
+    });
+  }
+  window.closeLightbox = () => { if (lightbox) lightbox.style.display = 'none'; };
+  window.changeImage   = direction => {
+    if (!images.length || !lightboxImg) return;
+    currentIndex = (currentIndex + direction + images.length) % images.length;
+    lightboxImg.src = images[currentIndex];
+  };
+
+  // ————————————————————————————————————————————————
+  // 5) "Pokaż wszystkie" (rozszerzenie galerii o extraImages)
+  // ————————————————————————————————————————————————
   const showAllBtn = document.getElementById('showAllBtn');
   if (showAllBtn) {
     showAllBtn.addEventListener('click', () => {
-      const extraImgs = document.querySelectorAll('#extraImages img[data-extra="true"]');
-      extraImgs.forEach(extra => {
-        images.push(extra.src);
-      });
-      currentIndex = images.length - extraImgs.length;
-      openLightbox();
-    });
-  }
-
-  // Widget rezerwacji + Modal
-  const askForReservationBtn = document.getElementById('askForReservationBtn');
-  const inputAdults = document.getElementById('adults');
-  const inputChildren = document.getElementById('children');
-  const inputArrival = document.getElementById('arrival');
-  const inputDeparture = document.getElementById('departure');
-  const reservationModal = document.getElementById('reservationModal');
-  const closeModal = document.getElementById('closeModal');
-  const modalAdults = document.getElementById('modalAdults');
-  const modalChildren = document.getElementById('modalChildren');
-  const modalArrival = document.getElementById('modalArrival');
-  const modalDeparture = document.getElementById('modalDeparture');
-  const detailedResForm = document.getElementById('detailedReservationForm');
-  const modalFormResponse = document.getElementById('modalFormResponse');
-  if (askForReservationBtn) {
-    askForReservationBtn.addEventListener('click', () => {
-      modalAdults.value = inputAdults.value;
-      modalChildren.value = inputChildren.value;
-      modalArrival.value = inputArrival.value;
-      modalDeparture.value = inputDeparture.value;
-      reservationModal.style.display = 'block';
-    });
-  }
-  if (closeModal) {
-    closeModal.addEventListener('click', () => {
-      reservationModal.style.display = 'none';
-      modalFormResponse.textContent = "";
-    });
-  }
-  window.onclick = function(event) {
-    if (event.target === reservationModal) {
-      reservationModal.style.display = 'none';
-      modalFormResponse.textContent = "";
-    }
-  };
-  if (detailedResForm) {
-    detailedResForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      modalFormResponse.textContent = "Wysyłanie zapytania (symulacja)...";
-      try {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        modalFormResponse.textContent = "Wysłano zapytanie. Skontaktujemy się wkrótce.";
-        detailedResForm.reset();
-      } catch (error) {
-        console.error('Błąd:', error);
-        modalFormResponse.textContent = "Błąd wysyłki. Spróbuj ponownie.";
+      const extra = document.querySelectorAll('#extraImages img[data-extra="true"]');
+      extra.forEach(img => images.push(img.src));
+      currentIndex = images.length - extra.length;
+      if (lightbox && lightboxImg) {
+        lightbox.style.display = 'block';
+        lightboxImg.src = images[currentIndex];
       }
     });
   }
-});
 
-/******************************************************************************
- * 2) KOD SKOPIOWANY 1:1 Z index.html (inline scripts)
- * Usunięty z index.html i wklejony tutaj, by wszystko było w main.js
- *****************************************************************************/
+  // ————————————————————————————————————————————————
+  // 6) Szybki formularz "Zapytaj o rezerwację" + Modal "wizard"
+  // ————————————————————————————————————————————————
+  const askBtn         = document.getElementById('askForReservationBtn');
+  const inputAdults    = document.getElementById('adults');
+  const inputChildren  = document.getElementById('children');
+  const inputArrival   = document.getElementById('arrival');
+  const inputDeparture = document.getElementById('departure');
+  const reservationModal = document.getElementById('reservationModal');
+  const closeModalBtn    = document.getElementById('closeModal');
+  const modalAdults      = document.getElementById('modalAdults');
+  const modalChildren    = document.getElementById('modalChildren');
+  const modalArrival     = document.getElementById('modalArrival');
+  const modalDeparture   = document.getElementById('modalDeparture');
+  const detailedForm     = document.getElementById('detailedReservationForm');
+  const modalResponse    = document.getElementById('modalFormResponse');
 
-// Skrypt do poster -> wideo po hover oraz przekierowania
-document.querySelectorAll('.reel-item').forEach(item => {
-  item.addEventListener('click', () => {
-    window.location.href = item.getAttribute('data-url');
-  });
-  const poster = item.querySelector('.poster');
-  const video = item.querySelector('.reel-video');
-  poster.style.display = 'block';
-  video.style.display = 'none';
-  item.addEventListener('mouseenter', () => {
-    poster.style.display = 'none';
-    video.style.display = 'block';
-    video.play();
-  });
-  item.addEventListener('mouseleave', () => {
-    video.pause();
-    video.style.display = 'none';
-    poster.style.display = 'block';
-  });
-});
+  if (askBtn) {
+    askBtn.addEventListener('click', () => {
+      if (modalAdults    && inputAdults)    modalAdults.value    = inputAdults.value;
+      if (modalChildren  && inputChildren)  modalChildren.value  = inputChildren.value;
+      if (modalArrival   && inputArrival)   modalArrival.value   = inputArrival.value;
+      if (modalDeparture && inputDeparture) modalDeparture.value = inputDeparture.value;
+      if (reservationModal) reservationModal.style.display = 'block';
+    });
+  }
 
-// Skrypt Instafeed – przeniesiony 1:1
-var feed = new Instafeed({
-  get: 'user',
-  userId: 'YOUR_USER_ID',         // Podmień na identyfikator użytkownika
-  accessToken: 'YOUR_ACCESS_TOKEN',// Podmień na token dostępu
-  limit: 6,
-  template:
-    '<a href="{{link}}" target="_blank"><img src="{{image}}" alt="{{caption}}" style="width:48px; height:48px; margin:2px; border-radius:4px;" /></a>',
-  after: function() {
-    var items = document.querySelectorAll('#instafeed a');
-    var currentIndex = 0;
-    setInterval(function() {
-      items.forEach(function(item) {
-        item.style.opacity = '0';
+  if (closeModalBtn && reservationModal) {
+    closeModalBtn.addEventListener('click', () => {
+      reservationModal.style.display = 'none';
+      if (modalResponse) modalResponse.textContent = "";
+    });
+  }
+
+  window.onclick = e => {
+    if (e.target === reservationModal) {
+      reservationModal.style.display = 'none';
+      if (modalResponse) modalResponse.textContent = "";
+    }
+  };
+
+  if (detailedForm && modalResponse) {
+    detailedForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      modalResponse.textContent = "Wysyłanie zapytania (symulacja)…";
+      try {
+        await new Promise(r => setTimeout(r, 1000));
+        modalResponse.textContent = "Wysłano zapytanie. Skontaktujemy się wkrótce.";
+        detailedForm.reset();
+      } catch (err) {
+        console.error('Błąd symulacji wysyłki:', err);
+        modalResponse.textContent = "Błąd wysyłki. Spróbuj ponownie.";
+      }
+    });
+  }
+
+  // ————————————————————————————————————————————————
+  // 7) Reel-item hover / click (inline ze strony głównej)
+  // ————————————————————————————————————————————————
+  document.querySelectorAll('.reel-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const url = item.getAttribute('data-url');
+      if (url) window.location.href = url;
+    });
+    const poster = item.querySelector('.poster');
+    const video  = item.querySelector('.reel-video');
+    if (poster && video) {
+      poster.style.display = 'block';
+      video.style.display  = 'none';
+      item.addEventListener('mouseenter', () => {
+        poster.style.display = 'none';
+        video.style.display  = 'block';
+        video.play();
       });
-      items[currentIndex].style.opacity = '1';
-      currentIndex = (currentIndex + 1) % items.length;
-    }, 4000);
+      item.addEventListener('mouseleave', () => {
+        video.pause();
+        video.style.display  = 'none';
+        poster.style.display = 'block';
+      });
+    }
+  });
+
+  // ————————————————————————————————————————————————
+  // 8) Instafeed
+  // ————————————————————————————————————————————————
+  if (window.Instafeed) {
+    var feed = new Instafeed({
+      get: 'user',
+      userId: 'YOUR_USER_ID',
+      accessToken: 'YOUR_ACCESS_TOKEN',
+      limit: 6,
+      template: '<a href="{{link}}" target="_blank"><img src="{{image}}" alt="{{caption}}" style="width:48px;height:48px;margin:2px;border-radius:4px;" /></a>',
+      after: () => {
+        const items = document.querySelectorAll('#instafeed a');
+        let idx = 0;
+        setInterval(() => {
+          items.forEach(i => i.style.opacity = '0');
+          items[idx].style.opacity = '1';
+          idx = (idx + 1) % items.length;
+        }, 4000);
+      }
+    });
+    feed.run();
   }
 });
-feed.run();
