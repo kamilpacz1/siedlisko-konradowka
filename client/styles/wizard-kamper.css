@@ -1,0 +1,176 @@
+/* ——— Overlay (modal) ukryty domyślnie ——— */
+.modal {
+    display: none;               /* <— konieczne, inaczej overlay blokuje całą stronę */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    overflow: auto;
+  }
+  .modal.active {
+    display: block;
+  }
+  
+  /* ——— Okno modalne ——— */
+  .modal-content {
+    position: relative;
+    margin: 5% auto;
+    width: 90%;
+    max-width: 480px;            /* większa szerokość, jak lubiłeś */
+    padding: 1.5em;
+    background-color: #fff;
+    color: #000;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 1001;
+  }
+  
+  /* ——— Wizard: pasek kroków ——— */
+  .wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5em;
+    margin-bottom: 1.5em;
+    font-family: var(--font-headings);
+  }
+  .step-indicator {
+    flex: 1;
+    text-align: center;
+    padding: 0.5em 0;
+    border-bottom: 2px solid #888;
+    color: #444;
+    font-size: 0.9rem;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .step-indicator.active {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    font-weight: bold;
+  }
+  
+  /* ——— Ukrywanie wszystkich kroków, JS pokazuje aktualny ——— */
+  .wizard-step {
+    display: none;
+  }
+  .wizard-step.active {
+    display: block;
+  }
+  
+  /* ——— Formularz wizard ——— */
+  #wizardForm {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  #wizardForm .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  #wizardForm .form-row label {
+    flex: 0 0 120px;
+    margin-right: 0.5em;
+    font-weight: 600;
+    color: #000;
+  }
+  #wizardForm .form-row input,
+  #wizardForm .form-row textarea {
+    flex: 1;
+    padding: 0.5em;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+    font-family: var(--font-body);
+  }
+  #wizardForm .form-row textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* ——— Podsumowanie ——— */
+  #wizardForm .form-row.summary {
+    display: block;
+    margin-top: 1em;
+  }
+  #wizardForm .form-row.summary p {
+    margin: 0.5em 0;
+    color: #000;
+  }
+  
+  /* ——— Nawigacja ——— */
+  .wizard-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5em;
+  }
+  .wizard-btn {
+    background-color: #fff;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    border-radius: 4px;
+    font-family: var(--font-special);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+  }
+  .wizard-btn:disabled {
+    background-color: #f5f5f5;
+    color: #ccc;
+    border-color: #ccc;
+    cursor: default;
+  }
+  .wizard-btn:not(:disabled):hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+  
+  /* ——— Komunikat po wysłaniu ——— */
+  .form-response {
+    display: block;
+    margin-top: 1.5em;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .form-response.success { color: rgb(1, 56, 10); }
+  .form-response.error   { color: #c00; }
+
+  
+  /* jeśli używasz .wizard-navigation + .btn-reservation */
+.wizard-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5em;
+}
+
+/* większe przyciski wewnątrz wizardu */
+.wizard-navigation .btn-reservation {
+    margin: 0;               /* usuń auto-marginesy */
+    display: inline-flex;    /* wymusza ustawienie w rzędzie */
+    padding: 0.6em 1.2em;    /* większy padding */
+    font-size: 1.2rem;       /* większy tekst */
+  }
+  
+.btn-reservation {
+  /* usuń auto-marginesy, żeby nie układały się pionowo */
+  margin: 0;
+  display: inline-block;
+}
+
+/* albo jeśli masz .wizard-nav + .wizard-btn */
+.wizard-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5em;
+}
+.wizard-btn {
+  margin: 0;
+  display: inline-flex;
+}

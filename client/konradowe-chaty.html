@@ -44,14 +44,25 @@
   <!-- Dynamiczny header -->
   <div id="header-placeholder"></div>
 
-  <!-- Link do Studia w Starej Stajni -->
-  <a href="studia-stara-stajnia.html" class="side-arrow-link chaty-apartamenty-link">
-    <span class="arrow-text">
-      Chaty to nie wszystko…<br>
-      sprawdź Studia w Starej Stajni!
-    </span>
-    <img src="img/icons/arrow-right-brown.png" alt="Przejdź do apartamentów">
-  </a>
+<!-- Lewa strzała – na lewym boku strony -->
+<a href="kamperowisko.html"
+   class="chaty-apartamenty-link link-left">
+  <img src="img/icons/kamperowisko.png" class="icon-default" alt="Kamperowisko">
+  <img src="img/icons/arrow-left-brown.png" class="icon-hover" alt="Wróć do Kamperowiska">
+  <span class="arrow-text">Wróć do…<br>Kamperowiska</span>
+</a>
+
+
+<!-- Prawa strzała – na prawym boku strony -->
+<a href="studia-stara-stajnia.html"
+   class="chaty-apartamenty-link link-right">
+  <img src="img/icons/studia-stara-stajnia.png" class="icon-default" alt="Studio">
+  <img src="img/icons/arrow-right-brown.png" class="icon-hover" alt="Przejdź do Studia">
+  <span class="arrow-text">
+    Chaty to nie wszystko…<br>Sprawdź Studia!
+  </span>
+</a>
+
 
   <!-- Featured Images -->
   <section class="featured-images" data-aos="fade-up">
@@ -87,9 +98,33 @@
         <!-- Lewa kolumna -->
         <div class="property-left">
           <h2>Konradowe Chaty</h2>
-          <p class="subtitle">70 m² przytulnej przestrzeni, gdzie tradycja spotyka nowoczesność</p>
-          <p>Zapraszamy do klimatycznego domku…</p>
-          <!-- … opis, udogodnienia, atrakcje … -->
+          <p class="subtitle">Dwupoziomowe domki na wyłączność, z tarasem i bezpośrednim dostępem do wody</p>
+        
+          <p>
+            Każdy z naszych domków (70 m²) ma salon z kominkiem do sezonu zimowego oraz aneks kuchenny (lodówka, płyta kuchenna, piekarnik, czajnik, mikrofalówka). 
+            Znajdziesz tu też rozkładaną sofę i biblioteczkę z książkami. Na piętrze – dwie sypialnie, natomiast na zadaszonym tarasie stół i krzesła z widokiem na wodę. 
+            Łazienka wyposażona jest w wygodny prysznic. Całość dopełnia Wi-Fi, telewizor oraz możliwość wypożyczenia kajaków i rowerów.
+          </p>
+        
+          <h3>Udogodnienia</h3>
+          <ul class="amenities-list">
+            <li class="amenity-kitchen">Aneks kuchenny (lodówka, płyta, piekarnik, czajnik, mikrofalówka)</li>
+            <li class="amenity-terrace">Zadaszony taras</li>
+            <li class="amenity-bedroom">Dwie sypialnie</li>
+            <li class="amenity-sofa">Rozkładana sofa</li>
+            <li class="amenity-bathroom">Łazienka z prysznicem</li>
+            <li class="amenity-tech">Wi-Fi, telewizor</li>
+            <li class="amenity-fireplace">Kominek</li>
+            <li class="amenity-sport">Kajaki i rowery (wypożyczenie)</li>
+          </ul>
+        
+          <div class="attractions-preview">
+            <h3>Jakie atrakcje na mnie czekają?</h3>
+            <p>
+              Wypożycz kajak lub rower i odkryj okoliczne jeziora i lasy, a wieczorem zrelaksuj się przy kominku słuchając śpiewu ptaków.
+            </p>
+            <a href="okoliczne-atrakcje.html" class="btn-attractions">Poznaj atrakcje</a>
+          </div>
         </div>
 
         <!-- Prawa kolumna z szybkim formularzem -->
@@ -213,5 +248,45 @@
        if (['IMG','VIDEO'].includes(e.target.tagName)) e.preventDefault();
      });
    </script>
+
+
+  <!-- Pokaz wszystkie - galeria -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const featured = Array.from(document.querySelectorAll('.featured-images .gallery-img'));
+      const extraContainer = document.getElementById('extraImages');
+      const extra = Array.from(extraContainer.querySelectorAll('[data-extra]'));
+      const all = [...featured, ...extra];
+      let idx = 0;
+      const lightbox = document.getElementById('lightbox');
+      const lbImg     = document.getElementById('lightbox-img');
+    
+      function openLightbox(i) {
+        idx = i;
+        lbImg.src = all[i].src;
+        lightbox.style.display = 'block';
+      }
+    
+      all.forEach((img, i) => {
+        img.addEventListener('click', () => openLightbox(i));
+      });
+    
+      // pokaż wszystkie – otwórz lightbox przy pierwszym obrazku
+      document.getElementById('showAllBtn').addEventListener('click', () => {
+        openLightbox(0);
+      });
+    
+      document.querySelector('#lightbox .close').addEventListener('click', () => {
+        lightbox.style.display = 'none';
+      });
+      document.querySelector('#lightbox .prev').addEventListener('click', () => {
+        openLightbox((idx - 1 + all.length) % all.length);
+      });
+      document.querySelector('#lightbox .next').addEventListener('click', () => {
+        openLightbox((idx + 1) % all.length);
+      });
+    });
+    </script>
+    
  </body>
  </html>

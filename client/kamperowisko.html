@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kamperowisko - Kukowo</title>
+
+  <!-- Globalne style -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- Style specyficzne dla podstrony Kamperowisko -->
+  <link rel="stylesheet" href="styles/kamperowisko.css">
+  <!-- header & footer -->
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <!-- wizard styles (osobny) -->
+  <link rel="stylesheet" href="styles/wizard-kamper.css">
+
+  <!-- Czcionki Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
+
+  <!-- EmailJS SDK -->
+<!-- nowa, wspierana wersja SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  // inicjalizujemy po załadowaniu skryptu
+  emailjs.init("WU6nK13OCtPUDJJad");
+</script>
+  <!-- dedykowany skrypt EmailJS -->
+  <script src="scripts/email_kamper.js" defer></script>
+</head>
+<body>
+  <!-- Side Navigation -->
+  <div id="sideNav" class="side-nav">
+    <div class="side-nav-header">Menu Witryny</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Strona Główna</a>
+    <a href="offer.html">Odkryj Siedlisko</a>
+    <a href="gallery.html">Galeria</a>
+    <a href="reservation.html">Rezerwacje</a>
+    <a href="contact.html">Kontakt</a>
+  </div>
+
+  <!-- Dynamiczny header -->
+  <div id="header-placeholder"></div>
+
+  <!-- Lewa strzałka do Konradowych Chat (default: ikona Konradowe Chaty) -->
+  <a href="konradowe-chaty.html" class="chaty-apartamenty-link link-left">
+    <img src="img/icons/konradowe-chaty.png"        class="icon-default" alt="Konradowe Chaty">
+    <img src="img/icons/arrow-left-brown.png"       class="icon-hover"   alt="Wróć do Konradowych Chat">
+    <span class="arrow-text">
+      Ucieknij od zgiełku…<br>
+      Odkryj Konradowe Chaty
+    </span>
+  </a>
+
+  <!-- Prawa strzałka do Studia Stara Stajnia (default: ikona Studia Stara Stajnia) -->
+  <a href="studia-stara-stajnia.html" class="chaty-apartamenty-link link-right">
+    <img src="img/icons/studia-stara-stajnia.png"  class="icon-default" alt="Studio Stara Stajnia">
+    <img src="img/icons/arrow-right-brown.png"     class="icon-hover"   alt="Sprawdź nasze Studia">
+    <span class="arrow-text">
+      Zanurz się w klimacie…<br>
+      Sprawdź nasze Studia!
+    </span>
+  </a>
+  
+
+  <!-- Featured Images -->
+  <section class="featured-images" data-aos="fade-up">
+    <div class="left-image">
+      <img src="img/kamperowisko/kamperowisko-1.jpg" alt="Kamperowisko - główne" class="gallery-img"/>
+    </div>
+    <div class="right-top">
+      <img src="img/kamperowisko/kamperowisko-2.jpg" alt="Widok 1" class="gallery-img"/>
+      <img src="img/kamperowisko/kamperowisko-3.jpg" alt="Widok 2" class="gallery-img"/>
+    </div>
+    <div class="right-bottom">
+      <img src="img/kamperowisko/kamperowisko-4.jpg" alt="Widok 3" class="gallery-img"/>
+      <div class="right4-wrapper">
+        <img src="img/kamperowisko/kamperowisko-5.jpg" alt="Widok 4" class="gallery-img"/>
+        <button class="show-all-btn" id="showAllBtn">Pokaż wszystkie</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ukryte dodatkowe zdjęcia (lightbox) -->
+  <div id="extraImages" style="display:none;">
+    <img src="img/kamperowisko/kamperowisko-6.jpg" alt="Extra1" data-extra>
+    <img src="img/kamperowisko/kamperowisko-7.jpg" alt="Extra2" data-extra>
+    <img src="img/kamperowisko/kamperowisko-8.jpg" alt="Extra3" data-extra>
+    <img src="img/kamperowisko/kamperowisko-9.jpg" alt="Extra4" data-extra>
+    <img src="img/kamperowisko/kamperowisko-10.jpg" alt="Extra5" data-extra>
+    <img src="img/kamperowisko/kamperowisko-11.jpg" alt="Extra6" data-extra>
+  </div>
+
+<!-- Property Wrapper -->
+<section class="property-wrapper" data-aos="fade-up">
+  <div class="container property-card">
+    <div class="property-container">
+      <div class="property-left">
+        <h2>Kamperowisko</h2>
+        <p class="subtitle">Przestrzeń dla Twojego kampera</p>
+      
+        <p>Kamperowisko w Kukowie to kameralne miejsce idealne dla miłośników podróży na czterech kółkach. Położone tuż nad stawem i otoczone mazurskimi lasami, oferuje wygodne stanowiska z przyłączem prądu, wody i kanalizacji oraz dostępem do szybkiego Wi-Fi.</p>
+        <p>Na terenie znajdziesz nowoczesne sanitariaty z ciepłą wodą, przestronną wiatę biesiadną oraz możliwość wypożyczenia kajaków i rowerów. Wieczory urozmaici ognisko i śpiew ptaków, co pozwoli Ci w pełni odpocząć od miejskiego zgiełku.</p>
+      
+        <h3>Udogodnienia</h3>
+        <ul class="amenities-list">
+          <li class="amenity-bathroom">Sanitariaty 24/7 (toalety i prysznice)</li>
+          <li class="amenity-picnic">Wiata biesiadna</li>
+          <li class="amenity-tech">Przyłącza: prąd, woda, kanalizacja, Wi-Fi</li>
+          <li class="amenity-sport">Kajaki i rowery (wypożyczenie)</li>
+          <li class="amenity-tent">Wydzielone stanowiska namiotowe</li>
+        </ul>
+      
+        <div class="attractions-preview">
+          <h3>Jakie atrakcje na mnie czekają?</h3>
+          <p>Wypożycz kajak lub rower i odkryj okoliczne stawy i leśne ścieżki, a wieczorem zrelaksuj się przy ognisku, słuchając mazurskiej przyrody.</p>
+          <a href="okoliczne-atrakcje.html" class="btn-attractions">Poznaj atrakcje</a>
+        </div>
+      </div>
+    
+      <!-- Prawa kolumna z szybkim formularzem -->
+      <div class="property-right video-sticky">
+        <div class="video-with-overlay-container">
+          <video src="videos/kamperowisko-preview.mp4" autoplay muted loop class="form-video-bg"></video>
+          <form id="quickRegistrationForm" class="form-overlay">
+            <h3>Zapytaj o miejsce</h3>
+            <label for="adults">Dorośli:</label>
+            <input type="number" id="adults" name="adults" min="1" value="2" required>
+            <label for="children">Dzieci:</label>
+            <input type="number" id="children" name="children" min="0" value="0" required>
+            <label for="arrival">Data przyjazdu:</label>
+            <input type="date" id="arrival" name="arrival" required>
+            <label for="departure">Data wyjazdu:</label>
+            <input type="date" id="departure" name="departure" required>
+            <button type="button" id="askForRegistrationBtn" class="btn-reservation">
+              Zapytaj o miejsce
+            </button>
+            <p class="form-response"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Mapa -->
+  <section class="map-section" data-aos="fade-up">
+    <div class="container">
+      <h3>Jak dojechać?</h3>
+      <p>Wpadnij do nas swoim Kamperem. Poniżej mapka z lokalizacją w Kukowie 33A.</p>
+      <div class="map-iframe-wrapper">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2421.633642572497!2d22.520234!3d54.034183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e1f94f217ce04d%3A0x5f47fe7c89da2d4d!2sKukowo%2033A%2C%2019-400 Olecko!5e0!3m2!1spl!2spl!4v1670000000000!5m2!1spl!2spl"
+          width="100%" height="400" style="border:0;" allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+<!-- FAQ -->
+<section class="faq-section" data-aos="fade-up">
+  <div class="container">
+    <h2 class="faq-heading">Najczęściej zadawane pytania</h2>
+
+    <div class="faq-item">
+      <button class="faq-question">Jakie sanitariaty są dostępne na kamperowisku?</button>
+      <div class="faq-answer">
+        Na terenie kamperowiska znajdują się nowoczesne toalety oraz oddzielne kabiny prysznicowe z ciepłą wodą, czynne całą dobę.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Czy jest kuchnia i miejsce do wspólnego posiłku?</button>
+      <div class="faq-answer">
+        Tak – do dyspozycji gości jest w pełni wyposażona kuchnia oraz przestronna jadalnia ze stołami, idealna na rodzinne obiady czy wieczorne spotkania.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Czy mogę wypożyczyć kajak lub rower?</button>
+      <div class="faq-answer">
+        Oczywiście – na miejscu oferujemy wypożyczenie kajaków i rowerów. Rezerwacji można dokonać w recepcji kamperowiska.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Czy kamperowisko ma bezpośredni dostęp do stawu?</button>
+      <div class="faq-answer">
+        Tak – nasze kamperowisko leży bezpośrednio nad stawem, co umożliwia wędkowanie, kąpiele i relaks na plaży.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Czy przy każdym miejscu są przyłącza mediów?</button>
+      <div class="faq-answer">
+        Każde stanowisko kamperowe wyposażone jest w przyłącze prądu, wody i kanalizacji, aby zapewnić pełen komfort.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Czy można rozbić namiot na terenie?</button>
+      <div class="faq-answer">
+        Tak – dysponujemy wydzielonymi miejscami na rozbicie namiotów, z dostępem do mediów i sanitariatów.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Czy na terenie jest dostępne Wi-Fi?</button>
+      <div class="faq-answer">
+        W całej strefie kamperowiska zapewniamy darmowe Wi-Fi o zasięgu pokrywającym wszystkie stanowiska.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Czy jest stół do tenisa stołowego?</button>
+      <div class="faq-answer">
+        Tak – dla gości przygotowaliśmy stół do ping-ponga oraz sprzęt (rakietki, piłeczki) do bezpłatnego wypożyczenia.
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+  <!-- Opinie Google -->
+  <section class="google-reviews-section" data-aos="fade-up">
+    <div class="container">
+      <h2>Opinie Gości</h2>
+      <p class="reviews-subtitle">Sprawdź, co mówią nasi goście w Google</p>
+      <script src="https://static.elfsight.com/platform/platform.js" async></script>
+      <div class="elfsight-app-e5fba9f6-eb88-4522-afc0-0fd9534bdb20" data-elfsight-app-lazy></div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="Powiększony obraz">
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
+  </div>
+
+  <!-- Stopka -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Wizard Placeholder -->
+  <div id="wizard-placeholder"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('wizard-kamper.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('wizard-placeholder').innerHTML = html;
+          const s = document.createElement('script');
+          s.src = 'scripts/wizard-kamper.js';
+          document.body.appendChild(s);
+          document.getElementById('askForRegistrationBtn')
+          .addEventListener('click', () => {
+            // Skopiuj wartości z szybkiego formularza do wizardu:
+            document.getElementById('w-adults').value    = document.getElementById('adults').value;
+            document.getElementById('w-children').value  = document.getElementById('children').value;
+            document.getElementById('w-arrival').value   = document.getElementById('arrival').value;
+            document.getElementById('w-departure').value = document.getElementById('departure').value;
+            // Otwórz modal wizardu:
+            openReservationWizard();
+          });
+        })
+        .catch(console.error);
+    });
+  </script>
+
+  <!-- Globalne skrypty -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="scripts/load-header.js"></script>
+  <script src="scripts/header-scroll.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/faq-toggle.js"></script>
+  <script src="scripts/load-footer.js"></script>
+  <script>
+    document.addEventListener('contextmenu', e => {
+      if (['IMG','VIDEO'].includes(e.target.tagName)) e.preventDefault();
+    });
+  </script>
+
+  <!-- Pokaz wszystkie - galeria -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const featured = Array.from(document.querySelectorAll('.featured-images .gallery-img'));
+      const extraContainer = document.getElementById('extraImages');
+      const extra = Array.from(extraContainer.querySelectorAll('[data-extra]'));
+      const all = [...featured, ...extra];
+      let idx = 0;
+      const lightbox = document.getElementById('lightbox');
+      const lbImg     = document.getElementById('lightbox-img');
+
+      function openLightbox(i) {
+        idx = i;
+        lbImg.src = all[i].src;
+        lightbox.style.display = 'block';
+      }
+
+      all.forEach((img, i) => {
+        img.addEventListener('click', () => openLightbox(i));
+      });
+
+      document.getElementById('showAllBtn').addEventListener('click', () => openLightbox(0));
+      document.querySelector('#lightbox .close').addEventListener('click', () => lightbox.style.display = 'none');
+      document.querySelector('#lightbox .prev').addEventListener('click', () =>
+        openLightbox((idx - 1 + all.length) % all.length)
+      );
+      document.querySelector('#lightbox .next').addEventListener('click', () =>
+        openLightbox((idx + 1) % all.length)
+      );
+    });
+  </script>
+</body>
+</html>

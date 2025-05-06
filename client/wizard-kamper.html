@@ -1,0 +1,72 @@
+<div id="reservationModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close-modal">&times;</span>
+    <form id="wizardForm">
+
+      <!-- pasek kroków -->
+      <div class="wizard-steps">
+        <div class="step-indicator active">Szczegóły pobytu</div>
+        <div class="step-indicator">Dane kontaktowe</div>
+        <div class="step-indicator">Podsumowanie</div>
+      </div>
+
+      <!-- Krok 1: Szczegóły pobytu -->
+      <div class="wizard-step active" data-step="1">
+        <h2>Krok 1: Szczegóły pobytu</h2>
+        <div class="form-row">
+          <label for="w-adults">Dorośli:</label>
+          <input type="number" id="w-adults" name="adults" min="1" value="2" required>
+        </div>
+        <div class="form-row">
+          <label for="w-children">Dzieci:</label>
+          <input type="number" id="w-children" name="children" min="0" value="0">
+        </div>
+        <div class="form-row">
+          <label for="w-arrival">Data przyjazdu:</label>
+          <input type="date" id="w-arrival" name="arrival" required>
+        </div>
+        <div class="form-row">
+          <label for="w-departure">Data wyjazdu:</label>
+          <input type="date" id="w-departure" name="departure" required>
+        </div>
+      </div>
+
+      <!-- Krok 2: Dane kontaktowe -->
+      <div class="wizard-step" data-step="2">
+        <h2>Krok 2: Dane kontaktowe</h2>
+        <div class="form-row">
+          <label for="w-name">Imię i nazwisko:</label>
+          <input type="text" id="w-name" name="name" required>
+        </div>
+        <div class="form-row">
+          <label for="w-email">E-mail:</label>
+          <input type="email" id="w-email" name="email" required>
+        </div>
+        <div class="form-row">
+          <label for="w-phone">Telefon:</label>
+          <input type="tel" id="w-phone" name="phone">
+        </div>
+        <!-- nowe pole Wiadomość -->
+        <div class="form-row">
+          <label for="w-message">Wiadomość:</label>
+          <textarea id="w-message" name="message" rows="4" placeholder="Napisz, co chciałbyś przekazać..."></textarea>
+        </div>
+      </div>
+
+      <!-- Krok 3: Podsumowanie -->
+      <div class="wizard-step" data-step="3">
+        <h2>Krok 3: Podsumowanie</h2>
+        <div class="form-row summary" id="summary"></div>
+      </div>
+
+      <!-- Nawigacja -->
+      <div class="wizard-navigation">
+        <button type="button" id="prevBtn" class="btn-reservation" disabled>← Wstecz</button>
+        <button type="button" id="nextBtn" class="btn-reservation">Dalej →</button>
+        <button type="submit" id="submitBtn" class="btn-reservation" style="display:none;">Wyślij</button>
+      </div>
+
+      <p class="form-response"></p>
+    </form>
+  </div>
+</div>
