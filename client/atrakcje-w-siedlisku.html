@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atrakcje w Siedlisku – Siedlisko Konradówka</title>
+  <link rel="stylesheet" href="styles/atrakcje-w-siedlisku.css" />
+  <link rel="stylesheet" href="styles/footer.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+</head>
+<body>
+
+  <!-- NAGŁÓWEK -->
+  <header id="mainHeader" class="main-header">
+    <div class="container header-container">
+      <div class="logo">
+        <h1><a href="index.html">Siedlisko Konradówka</a></h1>
+      </div>
+      <nav class="desktop-nav">
+        <ul>
+          <li><a href="index.html#hero">Start</a></li>
+          <li><a href="offer.html">Odkryj Siedlisko</a></li>
+          <li><a href="gallery.html">Galeria</a></li>
+          <li><a href="okoliczne-atrakcje.html">Atrakcje</a></li>
+          <li><a href="contact.html">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="social-icons">
+        <img class="icon-fb" src="img/icons/fb-color.png" alt="Facebook" draggable="false">
+        <img class="icon-ig" src="img/icons/instagram-color.png" alt="Instagram" draggable="false">
+        <img class="icon-map" src="img/icons/google-maps-color.png" alt="Google Maps" draggable="false">
+      </div>
+    </div>
+  </header>
+
+  <!-- SPIS TREŚCI PO PRAWEJ -->
+  <nav class="page-toc" aria-label="Spis treści">
+    <ul>
+      <li><a href="#upcoming">Nadchodzące wydarzenia</a></li>
+      <li><a href="#news">Aktualności</a></li>
+      <li><a href="#atrakcje-w-siedlisku">Atrakcje w Siedlisku</a></li>
+      <li><a href="#siedlisko-attractions">Galeria</a></li>
+      <li><a href="#mapa">Mapa Atrakcji</a></li>
+      <li><a href="#google-reviews">Opinie Gości</a></li>
+    </ul>
+  </nav>
+  
+  <main>
+    <!-- HERO -->
+    <section class="hero-banner" id="hero" data-aos="fade-up">
+      <video class="hero-video" autoplay muted loop playsinline draggable="false">
+        <source src="videos/hero-background.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Siedlisko Konradówka</h1>
+        <p>Poznaj atrakcje dostępne na naszym terenie</p>
+      </div>
+    </section>
+
+    <!-- NADCHODZĄCE WYDARZENIA -->
+    <section id="upcoming" class="upcoming-section" data-component="upcoming-events" data-aos="fade-up">
+      <div class="container">
+        <h2>Nadchodzące wydarzenia</h2>
+        <div id="upcoming-list">
+          <p>Ładuję nadchodzące wydarzenia…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AKTUALNOŚCI -->
+    <section id="news"
+             class="news-section"
+             data-aos="fade-up"
+             data-news-page="atrakcje-w-siedlisku">
+      <div class="container">
+        <h2>Aktualności</h2>
+        <ul id="news-list">
+          <li>Ładuję aktualności…</li>
+        </ul>
+      </div>
+    </section>
+      
+    <!-- ATRAKCJE W SIEDLISKU -->
+    <section id="atrakcje-w-siedlisku" class="attractions-section" data-aos="fade-up">
+      <div class="container">
+        <h2>Atrakcje w Siedlisku</h2>
+        <p>Poznaj udogodnienia dostępne bezpośrednio na terenie naszego siedliska:</p>
+        <div class="attractions-grid">
+          <article class="attraction-item" data-aos="zoom-in">
+            <a href="konradowe-chaty.html">
+              <img src="img/konradowe-chaty.jpg" alt="Konradowe Chaty" draggable="false">
+            </a>
+            <div class="attraction-item__content">
+              <h3>Konradowe Chaty</h3>
+              <p>Przytulne chatki z kominkiem i tarasem tuż nad wodą.</p>
+            </div>
+          </article>
+          <article class="attraction-item" data-aos="zoom-in" data-aos-delay="100">
+            <a href="studia-stara-stajnia.html">
+              <img src="img/studia-w-starej-stajni.jpg" alt="Studia w Starej Stajni" draggable="false">
+            </a>
+            <div class="attraction-item__content">
+              <h3>Studia w Starej Stajni</h3>
+              <p>Stylowe apartamenty w odrestaurowanej stajni z nowoczesnym wyposażeniem.</p>
+            </div>
+          </article>
+          <article class="attraction-item" data-aos="zoom-in" data-aos-delay="200">
+            <a href="kamperowisko.html">
+              <img src="img/camping.jpg" alt="Pole Campingowe" draggable="false">
+            </a>
+            <div class="attraction-item__content">
+              <h3>Pole Campingowe</h3>
+              <p>Przestrzeń dla namiotów i kamperów z pełnym zapleczem i widokiem na las.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA / KARUZELA -->
+    <section id="siedlisko-attractions" data-aos="fade-up">
+      <div class="container">
+        <h2>Galeria Siedliska</h2>
+        <div class="carousel-container">
+          <button class="carousel-btn carousel-btn-prev" id="prevBtn">&#10094;</button>
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide"><img src="img/siedlisko/1.jpg" alt="" draggable="false"><span>Swojskie Jajka</span></div>
+            <div class="carousel-slide"><img src="img/siedlisko/2.jpg" alt="" draggable="false"><span>Pływanie po stawie</span></div>
+            <div class="carousel-slide"><img src="img/siedlisko/3.jpg" alt="" draggable="false"><span>Pływanie po jeziorze</span></div>
+            <div class="carousel-slide"><img src="img/siedlisko/4.jpg" alt="" draggable="false"><span>Pomost nad stawem</span></div>
+            <div class="carousel-slide"><img src="img/siedlisko/5.jpg" alt="" draggable="false"><span>Pobliskie jeziora</span></div>
+            <div class="carousel-slide"><img src="img/siedlisko/6.jpg" alt="" draggable="false"><span>Wieczory przy kominku</span></div>
+            <div class="carousel-slide"><img src="img/siedlisko/7.jpg" alt="" draggable="false"><span>Malownicze krajobrazy</span></div>
+            <div class="carousel-slide"><img src="img/siedlisko/8.jpg" alt="" draggable="false"><span>Dary natury</span></div>
+            <div class="carousel-slide"><img src="img/siedlisko/9.jpg" alt="" draggable="false"><span>Zwierzęta</span></div>
+            <div class="carousel-slide"><img src="img/siedlisko/10.jpg" alt="" draggable="false"><span>Długie spacery</span></div>
+          </div>
+          <button class="carousel-btn carousel-btn-next" id="nextBtn">&#10095;</button>
+          <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAPA -->
+    <section id="mapa" data-aos="fade-up">
+      <div class="container">
+        <h2>Mapa Atrakcji</h2>
+        <p>Interaktywna mapa ze szlakami pieszymi i rowerowymi — zaplanuj swoją trasę!</p>
+        <iframe
+          src="https://www.google.com/maps/d/u/0/embed?mid=1yA4rXebmaCPuSi7bP3HGbIYDySVpZM0"
+          loading="lazy"
+          title="Mapa atrakcji"
+          draggable="false">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- OPINIE GOŚCI -->
+    <section id="google-reviews" class="google-reviews-section" data-aos="fade-up">
+      <div class="container">
+        <h2>Opinie Gości</h2>
+        <p class="reviews-subtitle">Sprawdź, co mówią nasi goście w Google</p>
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-e5fba9f6-eb88-4522-afc0-0fd9534bdb20"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- STOPKA -->
+  <footer id="footer-placeholder">
+    © 2025 Siedlisko Konradówka – Wszystkie prawa zastrzeżone
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+  <script src="scripts/load-header.js" defer></script>
+  <script src="scripts/load-footer.js" defer></script>
+  <script src="scripts/news.js" defer></script>
+  <script src="scripts/upcoming.js" defer></script>
+
+  <!-- Blokada kopiowania i zapisu obrazów/wideo -->
+  <script>
+    // Blokuj prawe kliknięcie na img/video
+    document.addEventListener('contextmenu', function(e) {
+      const tag = e.target.tagName.toLowerCase();
+      if (tag === 'img' || tag === 'video' || e.target.closest('iframe')) {
+        e.preventDefault();
+      }
+    });
+
+    // Blokuj drag & drop
+    document.querySelectorAll('img, video, iframe').forEach(el => {
+      el.addEventListener('dragstart', e => e.preventDefault());
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({ duration:800, once:true });
+
+      const track = document.getElementById('carouselTrack');
+      const slides = Array.from(track.children);
+      const prev = document.getElementById('prevBtn');
+      const next = document.getElementById('nextBtn');
+      const dots  = document.getElementById('carouselDots');
+      let idx = 0;
+
+      function setup() {
+        const vis = window.innerWidth > 800 ? 4
+                  : window.innerWidth > 500 ? 2
+                  : 1;
+        const w = track.clientWidth / vis;
+        slides.forEach(s => s.style.minWidth = `${w}px`);
+        const pages = Math.max(1, slides.length - vis + 1);
+        dots.innerHTML = '';
+        for (let i = 0; i < pages; i++) {
+          const b = document.createElement('button');
+          b.className = 'carousel-dot';
+          if (i === idx) b.classList.add('active');
+          b.addEventListener('click', () => { idx = i; go(); });
+          dots.appendChild(b);
+        }
+      }
+
+      function go() {
+        const vis = window.innerWidth > 800 ? 4
+                  : window.innerWidth > 500 ? 2
+                  : 1;
+        const w = track.clientWidth / vis;
+        track.style.transform = `translateX(-${idx * w}px)`;
+        prev.style.visibility = idx ? 'visible' : 'hidden';
+        next.style.visibility = idx >= slides.length - vis ? 'hidden' : 'visible';
+        Array.from(dots.children).forEach((b,i) => b.classList.toggle('active', i === idx));
+      }
+
+      prev.onclick = () => { if(idx>0){ idx--; go(); } };
+      next.onclick = () => { 
+        const vis = window.innerWidth > 800 ? 4
+                  : window.innerWidth > 500 ? 2
+                  : 1;
+        if(idx < slides.length - vis){ idx++; go(); }
+      };
+
+      window.addEventListener('resize', () => { setup(); go(); });
+      setup(); go();
+
+      window.addEventListener('scroll', () => {
+        document.getElementById('mainHeader')
+          .classList.toggle('scrolled', window.scrollY > 50);
+      });
+    });
+  </script>
+</body>
+</html>

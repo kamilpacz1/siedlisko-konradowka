@@ -42,22 +42,23 @@
   }
   
 /* ======================================================
-   2. TABLE OF CONTENTS (Timeline) – right side (NOWY STYL)
+   2. TABLE OF CONTENTS (Timeline) – right side (PRZEZROCZYSTY, NOWY STYL)
    ====================================================== */
    .page-toc {
     position: fixed;
     top: 50%;
     right: 2%;
     transform: translateY(-50%);
-    background: rgba(20, 20, 20, 0.6); /* ciemne tło z przezroczystością */
+    background: rgba(20, 20, 20, 0.4); /* bardziej przezroczysty */
     color: #f8f8f8;
     backdrop-filter: blur(6px); /* rozmycie tła */
     -webkit-backdrop-filter: blur(6px); /* dla Safari */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     padding: 1.2rem;
     z-index: 100;
     max-width: 220px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
   }
   
   .page-toc ul {
@@ -99,14 +100,23 @@
     display: none;
   }
   
+  /* Linki - animacja na hover */
   .page-toc a {
     color: #faf5ef;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
   }
   
   .page-toc a:hover {
     color: var(--color-accent-hover);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+    text-decoration: underline;
+  }
+  
+  /* Dodatkowe wyróżnienie aktywnej sekcji */
+  .page-toc a.active {
+    font-weight: bold;
+    color: var(--color-primary);
     text-decoration: underline;
   }  
   
@@ -130,9 +140,11 @@
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 70%, rgba(255, 255, 255, 1) 100%);
     z-index: 2;
+    pointer-events: none;
   }
+  
   .hero-content {
     position: relative;
     z-index: 3;
@@ -176,55 +188,86 @@
     box-shadow: 0 6px 12px rgba(0,0,0,0.25);
   }
   
-  /* ======================================================
-     4. ATTRACTIONS GRID & CARDS
-     ====================================================== */
-  .attractions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-base);
-  }
-  .attraction-item {
-    background: #fff;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-light);
-    overflow: hidden;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-  }
-  .attraction-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  }
-  .attraction-item img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    filter: sepia(5%) brightness(95%) contrast(105%);
-    transition: transform var(--transition-fast);
-  }
-  .attraction-item:hover img {
-    transform: scale(1.05);
-  }
-  .attraction-item__content {
-    padding: var(--spacing-base);
-  }
-  .attraction-item__content h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-  }
-  .attraction-item__content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--spacing-base);
-  }
-  .attraction-item__content ul li {
-    margin-bottom: 0.4rem;
-    font-size: 0.95rem;
-  }
-  .attraction-item__content a.btn-attractions {
-    margin-top: 0.5rem;
-  }
+ /* ==============================
+   4. ATTRACTIONS GRID & CARDS - KLIKALNE OBRAZY
+   ============================== */
+.attractions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-base);
+}
+
+.attraction-item {
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+}
+
+.attraction-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.attraction-item a {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.attraction-item img {
+  width: 100%;
+  height: 280px; /* Zwiększona wysokość */
+  object-fit: cover;
+  filter: sepia(5%) brightness(95%) contrast(105%);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: block;
+}
+
+.attraction-item:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1) saturate(1.1);
+}
+
+.attraction-item__content {
+  padding: var(--spacing-base);
+  text-align: center;
+}
+
+.attraction-item__content h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.attraction-item__content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-base);
+  text-align: left;
+}
+
+.attraction-item__content ul li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+/* Efekt podświetlenia mazurskiego na hover */
+.attraction-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgba(255, 240, 200, 0.2), rgba(190, 255, 210, 0.25));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.attraction-item:hover::after {
+  opacity: 1;
+}
   
   /* ======================================================
      5. ADDITIONAL CONTENT
@@ -266,35 +309,48 @@
     .hero-content h1 { font-size: 2rem; }
     .hero-content p    { font-size: 1rem; }
   }
-  
 /* ======================================================
    8. HEADER – dynamiczny przezroczysty → biały po scrollu
    ====================================================== */
+
    .main-header {
     position: fixed;
-    top: 0;
-    width: 100%;
+    top: 0; left: 0; right: 0;
+    height: 80px;                             /* stała wysokość */
+    background: rgba(255, 255, 255, 0.05);     /* niższe krycie */
+    backdrop-filter: saturate(150%) blur(4px); /* lżejszy efekt szkła */
+    -webkit-backdrop-filter: saturate(150%) blur(4px);
+    border-bottom: 1px solid transparent;
+    border-image: linear-gradient(
+      to right,
+      rgba(255,255,255,0.5),
+      rgba(255,255,255,0.2),
+      rgba(255,255,255,0.5)
+    ) 1;
+    transition:
+      background 0.4s ease,
+      box-shadow 0.4s ease,
+      border-image 0.4s ease;
     z-index: 999;
-    padding: 0.8rem 1.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.4s ease, box-shadow 0.4s ease;
-    background-color: transparent;
-    box-shadow: none;
   }
   
   .main-header.scrolled {
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-image: none;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
   }
   
   .header-container {
     display: flex;
+    align-items: center;  /* wyśrodkuj w pionie */
     justify-content: space-between;
-    align-items: center;
+    height: 100%;         /* kontener rozciąga się na całą wysokość headera */
     width: 90%;
     max-width: 1200px;
+    margin: 0 auto;
   }
   
   .logo {
@@ -309,13 +365,16 @@
   }
   
   .logo a {
-    font-family: 'Amatic SC', cursive; /* jeśli chcesz już w nowym stylu */
+    font-family: 'Amatic SC', cursive;
     font-size: 1.6rem;
     font-weight: bold;
-    color: #333;
+    color: #fff;            /* biały na przezroczystym tle */
     text-decoration: none;
+    transition: color 0.3s;
   }
-  
+  .main-header.scrolled .logo a {
+    color: #333;            /* ciemny po scrollu */
+  }
   
   .desktop-nav ul {
     list-style: none;
@@ -328,9 +387,12 @@
   .desktop-nav ul li a {
     font-family: 'Amatic SC', cursive;
     font-size: 1.3rem;
+    color: #fff;            /* biały na przezroczystym tle */
     text-decoration: none;
-    color: #333;
     transition: color 0.3s ease;
+  }
+  .main-header.scrolled .desktop-nav ul li a {
+    color: #333;            /* ciemny po scrollu */
   }
   
   .desktop-nav ul li a:hover {
@@ -343,12 +405,10 @@
     margin-left: 1rem;
     transition: transform 0.2s ease;
   }
-  
-  .social-icons a:hover img {
+  .social-icons img:hover {
     transform: scale(1.1);
   }
   
-    
     /* ======================================================
     9. CENTERING BUTTONS IN ATTRACTION CARDS
     ====================================================== */
